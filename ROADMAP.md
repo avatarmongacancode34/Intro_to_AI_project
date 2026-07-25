@@ -8,7 +8,7 @@
 * Run: `cd Intro_to_AI_project` to move into the project directory.
 
 ### Step 2: Verify Your Local Identity
-Ensure your first name is set on this machine so our commit history is clear
+** Ensure your first name is set on this machine so our commit history is clear
 * Run: `git config --global user.name "Your First Name"`
 
 ### Step 3: Create Your Role-Specific Branch
@@ -42,7 +42,7 @@ Upload your local branch and its commits to the shared remote repository.
 ---
 
 ## 2. Shaun
-**Focus:** Building the  neural network—and teaching it to recognize the geometric shapes.
+**Focus:** Building the  neural network and teaching it to recognize the geometric shapes.
 
 ### Concepts to Learn:
 * **CNN Architecture:** How `Conv2D`, `ReLU`, `MaxPool2D`, and `Linear` layers stack together to extract spatial features.
@@ -50,9 +50,6 @@ Upload your local branch and its commits to the shared remote repository.
 * **Optimization & Loss:** How Cross-Entropy Loss calculates the error, and how the Adam Optimizer adjusts the weights.
 * **Regularization:** Using Dropout ($p=0.5$) and Early Stopping to prevent overfitting on the small dataset.
 
-**Recommended Videos:**
-* [Convolutional Neural Networks (CNNs) - Explained](https://www.youtube.com/watch?v=YGILT182T6w)
-* [Neural Networks Part 6: Cross Entropy](https://www.youtube.com/watch?v=6ArSys5qHAU) 
 
 ---
 
