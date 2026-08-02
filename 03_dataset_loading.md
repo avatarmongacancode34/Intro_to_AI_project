@@ -87,3 +87,4 @@ Results:
 ## Conclusion
 
 Stage 3 was successfully completed. The preprocessed dataset is now loaded, labelled, split into training/validation/testing sets, and prepared for CNN model training.
+Dataset prepared and loaded into PyTorch tensors and batches. GPU acceleration was implemented with automatic CUDA detection; however, the development machine uses Intel integrated graphics and does not provide an NVIDIA CUDA-enabled GPU. Therefore, the pipeline currently executes on CPU.
