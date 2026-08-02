@@ -6,7 +6,7 @@ def get_dataloaders(batch_size=32):
     """
     Loads the Adinkra dataset, splits it, and returns DataLoaders.
     """
-    DATASET_PATH = "dataset/processed"
+    DATASET_PATH = "dataset/raw"
     
     # TRANSFORMATIONS 
     # Training transformations 
