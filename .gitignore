@@ -10,3 +10,5 @@ __pycache__/
 
 # Processed/generated data
 dataset/processed/
+
+venv/
