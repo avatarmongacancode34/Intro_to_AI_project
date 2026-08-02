@@ -3,16 +3,16 @@ from torchvision import datasets, transforms
 from torch.utils.data import DataLoader, Subset
 
 
-# ==========================================
+
 # PATH
-# ==========================================
+
 
 DATASET_PATH = "dataset/processed"
 
 
-# ==========================================
+
 # DEVICE
-# ==========================================
+
 
 device = torch.device(
     "cuda" if torch.cuda.is_available() else "cpu"
@@ -26,9 +26,9 @@ else:
     print("WARNING: CUDA is not available. Using CPU.")
 
 
-# ==========================================
+
 # TRANSFORMATIONS
-# ==========================================
+
 
 # Training transformations
 # Data augmentation is applied ONLY during training.
@@ -59,9 +59,9 @@ test_transform = transforms.Compose([
 ])
 
 
-# ==========================================
+
 # LOAD BASE DATASET
-# ==========================================
+
 
 base_dataset = datasets.ImageFolder(
     root=DATASET_PATH
@@ -72,9 +72,9 @@ print("Classes:", base_dataset.classes)
 print("Class mapping:", base_dataset.class_to_idx)
 
 
-# ==========================================
+
 # CREATE TRAIN / VALIDATION / TEST SPLIT
-# ==========================================
+
 
 total_size = len(base_dataset)
 
@@ -103,9 +103,9 @@ test_indices = indices[
 ]
 
 
-# ==========================================
+
 # CREATE DATASETS
-# ==========================================
+
 
 # Training dataset
 train_full = datasets.ImageFolder(
@@ -143,9 +143,9 @@ test_dataset = Subset(
 )
 
 
-# ==========================================
+
 # DATASET SPLIT INFORMATION
-# ==========================================
+
 
 print("\nDataset Split")
 print("----------------")
@@ -154,9 +154,9 @@ print("Validation images:", len(val_dataset))
 print("Testing images   :", len(test_dataset))
 
 
-# ==========================================
+
 # CREATE DATALOADERS
-# ==========================================
+
 
 train_loader = DataLoader(
     train_dataset,
@@ -177,9 +177,9 @@ test_loader = DataLoader(
 )
 
 
-# ==========================================
+
 # TEST TRAINING BATCH
-# ==========================================
+
 
 images, labels = next(iter(train_loader))
 
@@ -190,9 +190,9 @@ print("Batch shape:", images.shape)
 print("Labels:", labels)
 
 
-# ==========================================
+
 # MOVE BATCH TO GPU
-# ==========================================
+
 
 images = images.to(device)
 labels = labels.to(device)
@@ -204,9 +204,9 @@ print("Images device:", images.device)
 print("Labels device:", labels.device)
 
 
-# ==========================================
+
 # NUMBER OF BATCHES
-# ==========================================
+
 
 print("\nNumber of Batches")
 print("---------------------")
@@ -215,9 +215,9 @@ print("Validation batches:", len(val_loader))
 print("Testing batches   :", len(test_loader))
 
 
-# ==========================================
+
 # FINAL VALIDATION
-# ==========================================
+
 
 print("\nPipeline Validation")
 print("---------------------")
