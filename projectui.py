@@ -1,93 +1,123 @@
-import base64
-
 import streamlit as st
 
-st.set_page_config(page_title="AdinkraViz", layout="wide")
-
-
-# Function to convert image to base64
-def get_base64(image_path):
-    with open(image_path, "rb") as img:
-        return base64.b64encode(img.read()).decode()
-
-
-# Replace with your downloaded image
-img = get_base64("background_adinkraviz.png")
-
 st.markdown(
-    f"""
+    """
     <style>
-    .stApp {{
-        background-image: url("data:image/png;base64,{img}");
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
-        background-attachment: fixed;
-    }}
 
-    /* Optional: Make the main container transparent */
-    .block-container {{
-        background: rgba(255, 255, 255, 0);
-        padding-top: 2rem;
-        padding-bottom: 2rem;
-    }}
+    
+    /* Title styling */
+    h1 {
+        color: #D4AF37;
+        font-family: Georgia, serif;
+        text-align: center;
+    }
 
-    /* Sidebar */
-    section[data-testid="stSidebar"] {{
-        background-color: rgba(255,255,255,0.9);
-    }}
 
-    /* Upload box */
-    [data-testid="stFileUploader"] {{
-        background-color: rgba(255,255,255,0.75);
-        border-radius: 12px;
-        padding: 10px;
-    }}
+    /* Subtitle */
+    h2, h3 {
+        color: black;
+        font-family: Georgia, serif;
+    }
+
+
+    /* Normal text */
+    p {
+        color: black;
+        font-size: 18px;
+    }
+
 
     /* Buttons */
-    .stButton>button {{
-        border-radius: 12px;
-    }}
+    .stButton button {
+        background-color: #D4AF37;
+        color: white;
+        border-radius: 10px;
+        border: none;
+        padding: 10px 25px;
+        font-weight: bold;
+    }
+
+
+    .stButton button:hover {
+        background-color: #B8860B;
+        color: white;
+    }
+
+
+    /* File uploader */
+    [data-testid="stFileUploader"] {
+        background-color: rgba(250, 243, 224, 0.15);
+        border-radius: 15px;
+        padding: 15px;
+    }
+
+
+    </style>
+    """,
+    unsafe_allow_html=True,
+)
+
+st.markdown(
+    """
+    <style>
+    /* Center the content */
+    .main {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+    }
     </style>
     """,
     unsafe_allow_html=True,
 )
 
 
-st.markdown(
-    "<h1 style='text-align: center;'>◈✦◈ AdinkraViz</h1>", unsafe_allow_html=True
-)
-st.markdown(
-    "<h3 style='text-align: center;'>Explore Akan Heritage Through Adinkra Symbols</h3>",
-    unsafe_allow_html=True,
-)
+st.title("𓂀 AdinkraViz")
+st.subheader("Explore Akan Heritage Through Adinkra Symbols.")
 st.write(
-    """
-    **Welcome to AdinkraViz!**
-    ✨ Where artificial intelligence meets cultural heritage.
-    
-    Upload an Adinkra symbol and uncover its meaning, history, 
-    and cultural significance.
+    """ 🌿 **Where artificial intelligence meets Akan heritage.**
+
+    Welcome to AdinkraViz! Upload an image to uncover its meaning, history, and cultural significance.
     """
 )
 
-uploaded_image = st.file_uploader(
-    "Upload an Adinkra symbol image", type=["png", "jpg", "jpeg"]
-)
+# Store uploaded image in memory
+if "Prediction" not in st.session_state:
+    st.session_state.image = None
 
+# Upload image
+uploaded_image = st.file_uploader("Upload an image", type=["jpg", "jpeg", "png"])
+
+# save image
 if uploaded_image:
-    st.image(uploaded_image, caption="Discover Akan heritage through Adinkra symbols.")
-
-if st.button("Learn More"):
-    st.write(
-        "Adinkra symbols are visual symbols that represent concepts, originating from the Akan people of Ghana "
-        "and the Gyaman people of Cote d'Ivoire in West Africa. "
-        "They are used extensively in fabrics, pottery, logos, and advertising. "
-        "Each symbol has a unique meaning and conveys traditional wisdom, aspects of life, or the environment."
+    st.session_state.uploaded_image = uploaded_image
+    st.image(
+        uploaded_image,
+        caption="Discover Akan heritage through Adinkra symbols",
+        use_column_width=True,
     )
 
-if st.button("Explore Symbols"):
-    if uploaded_image:
-        st.write("Running AI model to explore Adinkra symbols...")
+# Information section
+if st.button("Learn More"):
+    st.write(
+        """
+        Adinkra symbols are visual symbols that represent concepts or aphorisms, originating from the Akan people of Ghana and the Gyaman people of Côte d'Ivoire in West Africa. 
+        They are used extensively in fabrics, pottery, logos, and advertising. 
+        Each symbol has a unique meaning and conveys traditional wisdom, aspects of life, or the environment.
+        
+        The symbols are often used to express values, beliefs, and social norms. 
+        For example, the "Sankofa" symbol represents the idea of learning from the past to build a better future. The "Gye Nyame" symbol signifies the supremacy of God. 
+        These symbols are not only decorative but also serve as a means of communication and storytelling within the Akan culture.
+        
+        AdinkraViz aims to help users explore and understand these rich cultural symbols by allowing them to upload images and receive predictions about the Adinkra symbols they contain.
+        """
+    )
+
+# Prediction button
+if st.button("Predict"):
+    if uploaded_image is None:
+        st.warning("Please upload an image before predicting.")
     else:
-        st.warning("Please upload an image to explore Adinkra symbols.")
+        st.write("Running prediction...")
