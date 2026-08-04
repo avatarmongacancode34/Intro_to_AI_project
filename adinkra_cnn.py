@@ -1,3 +1,6 @@
+import torch
+import torch.nn as nn
+import torch.nn.functional as F
 class AdinkraCNN(nn.Module):
   def __init__(self, num_classes=10):
     super(AdinkraCNN, self).__init__()
@@ -20,7 +23,7 @@ class AdinkraCNN(nn.Module):
     self.fc1 = nn.Linear(in_features=64*28*28,out_features=128)
 
     ## apply droup out to 50% of the neurons
-    self.dropout = nn.Dropout(p = 0.5)
+    self.dropout = nn.Dropout(p = 0.7)
 
     #final output
     self.fc2 = nn.Linear(in_features=128,out_features=num_classes)
@@ -42,5 +45,5 @@ if __name__ == "__main__":
   model = AdinkraCNN(num_classes=10)
   print(model)
 
-  
+
 
