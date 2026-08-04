@@ -1,55 +1,87 @@
+import base64
 import streamlit as st
+import tempfile
+import os
+from inference import load_model, predict_image
+
+
+@st.cache_resource
+def load_model_cached():
+    return load_model()
+
+
+def get_base64(file_path):
+    with open(file_path, "rb") as image_file:
+        return base64.b64encode(image_file.read()).decode()
+
+
+background_image_path = get_base64("INTRO PROJECT 1.png")
+
 
 st.markdown(
-    """
+    f"""
     <style>
 
-    
+    .stApp {{
+        background-image: 
+        linear-gradient(
+            rgba(250, 243, 224, 0.65),
+            rgba(250, 243, 224, 0.65)
+        ),
+        url("data:image/png;base64,{background_image_path}");
+
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+    }}
+
+
     /* Title styling */
-    h1 {
+    h1 {{
         color: #D4AF37;
         font-family: Georgia, serif;
         text-align: center;
-    }
+    }}
 
 
     /* Subtitle */
-    h2, h3 {
+    h2, h3 {{
         color: black;
         font-family: Georgia, serif;
-    }
+    }}
 
 
     /* Normal text */
-    p {
+    p {{
         color: black;
         font-size: 18px;
-    }
+    }}
 
 
     /* Buttons */
-    .stButton button {
+    .stButton button {{
         background-color: #D4AF37;
         color: white;
         border-radius: 10px;
         border: none;
         padding: 10px 25px;
         font-weight: bold;
-    }
+    }}
 
 
-    .stButton button:hover {
+    .stButton button:hover {{
         background-color: #B8860B;
         color: white;
-    }
+    }}
 
 
     /* File uploader */
-    [data-testid="stFileUploader"] {
+    [data-testid="stFileUploader"] {{
         background-color: rgba(250, 243, 224, 0.15);
         border-radius: 15px;
         padding: 15px;
-    }
+    }}
 
 
     </style>
@@ -84,8 +116,8 @@ st.write(
 )
 
 # Store uploaded image in memory
-if "Prediction" not in st.session_state:
-    st.session_state.image = None
+if "uploaded_image" not in st.session_state:
+    st.session_state.uploaded_image = None
 
 # Upload image
 uploaded_image = st.file_uploader("Upload an image", type=["jpg", "jpeg", "png"])
@@ -117,7 +149,16 @@ if st.button("Learn More"):
 
 # Prediction button
 if st.button("Predict"):
-    if uploaded_image is None:
+    if st.session_state.uploaded_image is None:
         st.warning("Please upload an image before predicting.")
+
     else:
-        st.write("Running prediction...")
+        with tempfile.NamedTemporaryFile(delete=False, suffix=".png") as temp_file:
+            temp_file.write(st.session_state.uploaded_image.getbuffer())
+            temp_file_path = temp_file.name
+
+        prediction = predict_image(load_model_cached(), temp_file_path)
+
+        st.success(f"Prediction class ID: {prediction}")
+
+        os.remove(temp_file_path)
