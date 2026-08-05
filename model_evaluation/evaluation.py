@@ -1,19 +1,135 @@
-from sklearn.metrics import accuracy_score, confusion_matrix, classification_report
+import json
+from pathlib import Path
+
+from sklearn.metrics import (
+    accuracy_score,
+    classification_report,
+    confusion_matrix,
+    log_loss,
+)
 
 
-def evaluate_model(y_true, y_pred):
+# Always locate metadata file inside this folder
+BASE_DIR = Path(__file__).resolve().parent
+DEFAULT_METADATA = BASE_DIR / "adinkra_metadata.json"
 
+
+def load_class_names(metadata_path=DEFAULT_METADATA):
+    metadata_file = Path(metadata_path)
+
+    if not metadata_file.exists():
+        return {}
+
+    with metadata_file.open("r", encoding="utf-8") as file_handle:
+        metadata = json.load(file_handle)
+
+    class_names = {}
+
+    for class_id, values in metadata.items():
+        if isinstance(values, dict):
+            name = values.get("name", "")
+        else:
+            name = ""
+
+        class_names[str(class_id)] = name or f"Class {class_id}"
+
+    return class_names
+
+
+def evaluate_model(
+    y_true,
+    y_pred,
+    y_prob=None,
+    class_names=None,
+    metadata_path=DEFAULT_METADATA,
+):
+
+    # Safety check
+    if len(y_true) != len(y_pred):
+        raise ValueError(
+            "y_true and y_pred must have the same number of samples."
+        )
+
+    # Load class names if not provided
+    if class_names is None:
+        class_names = load_class_names(metadata_path)
+
+    # Get all labels that appear
+    labels = sorted(set(y_true) | set(y_pred))
+
+    # Convert IDs into class names
+    target_names = [
+        class_names.get(str(label), f"Class {label}")
+        for label in labels
+    ]
+
+    # Accuracy
     accuracy = accuracy_score(y_true, y_pred)
 
+    # Confusion Matrix
+    confusion = confusion_matrix(
+        y_true,
+        y_pred,
+        labels=labels
+    )
+
+    # Classification Report
+    report = classification_report(
+        y_true,
+        y_pred,
+        labels=labels,
+        target_names=target_names,
+        zero_division=0,
+    )
+
+    # Validation Loss (optional)
+    validation_loss = None
+
+    if y_prob is not None:
+        validation_loss = log_loss(
+            y_true,
+            y_prob,
+            labels=labels
+        )
+
+
+    # Display results
     print("Model Accuracy:", accuracy)
 
+    print("\nValidation Loss:")
+    if validation_loss is None:
+        print(
+            "Unavailable - pass y_prob with class probabilities "
+            "to compute log loss."
+        )
+    else:
+        print(validation_loss)
+
     print("\nConfusion Matrix:")
-    print(confusion_matrix(y_true, y_pred))
+    print(confusion)
 
     print("\nClassification Report:")
-    print(classification_report(y_true, y_pred))
+    print(report)
 
 
-# Example placeholder
-# y_true = actual labels
-# y_pred = model predictions
+    return {
+        "accuracy": accuracy,
+        "validation_loss": validation_loss,
+        "confusion_matrix": confusion,
+        "classification_report": report,
+        "labels": labels,
+        "target_names": target_names,
+    }
+# Optional test block
+# Remove this before final submission if your team does not want test code here
+if __name__ == "__main__":
+
+    y_true = [0, 1, 2, 1, 0, 2]
+    y_pred = [0, 1, 2, 0, 0, 2]
+
+    results = evaluate_model(
+        y_true,
+        y_pred
+    )
+
+
