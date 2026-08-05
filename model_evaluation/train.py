@@ -29,6 +29,7 @@ def train_model(model, train_loader,val_loader,criterion,optimizer, num_epochs,d
   print(f"Starting training for {num_epochs} epochs on {device}\n")
 
   best_val_loss = float('inf')
+  val_losses = []
 
   for epoch in range(num_epochs):
     start_time = time.time()
@@ -79,6 +80,7 @@ def train_model(model, train_loader,val_loader,criterion,optimizer, num_epochs,d
 
     epoch_val_loss = running_val_loss / len(val_loader.dataset)
     epoch_val_acc = 100 * correct_val / total_val
+    val_losses.append(epoch_val_loss)
 
     #saving best model
     if epoch_val_loss < best_val_loss:
@@ -95,7 +97,7 @@ def train_model(model, train_loader,val_loader,criterion,optimizer, num_epochs,d
               f"Val Loss: {epoch_val_loss:.4f} Acc: {epoch_val_acc:.4f}{saved_msg}")
               
   print("\nTraining complete. Best weights saved to 'best_adinkra_model.pth'.")
-  return model
+  return model, val_losses
 if __name__ == "__main__":
   device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
@@ -111,9 +113,9 @@ if __name__ == "__main__":
   criterion = nn.CrossEntropyLoss()
   optimizer = optim.Adam(model.parameters(), lr=LEARNING_RATE)
 
-  trained_model = train_model(model, train_loader,val_loader,criterion,optimizer, NUM_EPOCHS,device)
+  trained_model, val_losses = train_model(model, train_loader,val_loader,criterion,optimizer, NUM_EPOCHS,device)
 
   best_model_path = "best_adinkra_model.pth"
   trained_model.load_state_dict(torch.load(best_model_path, map_location=device))
   y_true, y_pred = collect_predictions(trained_model, val_loader, device)
-  evaluate_model(y_true, y_pred)
+  evaluate_model(y_true, y_pred, val_losses=val_losses)
