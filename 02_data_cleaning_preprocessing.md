@@ -144,3 +144,5 @@ dataset/
 │   └── ...
 │
 └── processed/
+
+Data augmentation was implemented at training time using PyTorch's torchvision.transforms. Random rotation, horizontal flipping, and random cropping are applied to training images to increase variation and improve the model's ability to generalize. Validation and testing images are not randomly augmented to ensure fair evaluation.
