@@ -232,8 +232,8 @@ if len(base_dataset) == 783:
 else:
     print("WARNING: Dataset contains", len(base_dataset), "images")
 
-if len(base_dataset.classes) == 10:
-    print("✓ 10 classes detected")
+if len(base_dataset.classes) == 101:
+    print("✓ 101 classes detected")
 else:
     print("✗ Incorrect number of classes")
 
