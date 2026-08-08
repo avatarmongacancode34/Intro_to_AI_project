@@ -4,6 +4,113 @@ import tempfile
 import os
 from inference import load_model, predict_image
 
+CLASS_NAMES = {
+    0: "Aban",
+    1: "Abe Dua",
+    2: "Adinkrahene Dua",
+    3: "Adinkrahene",
+    4: "Adwera",
+    5: "Adwo",
+    6: "Agyinduwura",
+    7: "Akoben",
+    8: "Akofena",
+    9: "Akokonan",
+    10: "Akoma",
+    11: "Akoma Ntoso",
+    12: "Ananse Ntontan",
+    13: "Ani Bere",
+    14: "Asase Ye Duru",
+    15: "Aya",
+    16: "Bese Saka",
+    17: "Bi Nnka Bi",
+    18: "Biribi Wo Soro",
+    19: "Boa Me Na Me Mmoa Wo",
+    20: "Dama Dame",
+    21: "Denkyem",
+    22: "Dono",
+    23: "Duafe",
+    24: "Dwannimmen",
+    25: "Eban",
+    26: "Epa",
+    27: "Ese Ne Tekrema",
+    28: "Fafanto",
+    29: "Fawohudie",
+    30: "Fihankra", 
+    31: "Fofo", 
+    32: "Funtumfunafu Denkyem Funafu",
+    33: "Gye Nyame",
+    34: "Hwemudua",
+    35: "Hye Won Hye",
+    36: "Kae Me",
+    37: "Kete Pa",
+    38: "Kintinkantan",
+    39: "Kojo Baiden",
+    40: "Kontire Ne Akwamu",
+    41: "Krado",
+    42: "Kramo Bone",
+    43: "Kuntinkantan",
+    44: "Kwatakye Atiko",
+    45: "Mako",
+    46: "Mate Masie",
+    47: "Mframadan",
+    48: "Mmere Dane",
+    49: "Mmomudwan",
+    50: "Mmusuyidee",
+    51: "Mpatapo",
+    52: "Mpuannum",
+    53: "Nea Onnim No Sua A Ohu",
+    54: "Nea Ope Se Nkrofoo Ye Ma Wo No - Ye Saa Ara Ma Won",
+    55: "Nea Ope Se Obedi Hene",
+    56: "Nkonsonkonson",
+    57: "Nkontim",
+    58: "Nkuma Kese",
+    59: "Nkyimu",
+    60: "Nkyinkyim",
+    61: "Nnonnowa",
+    62: "Nsaa", 
+    63: "Nserewa",
+    64: "Nsoromma",
+    65: "Nya Abotere",
+    66: "Nyame Akruma",
+    67: "Nyame Biribi Wo Soro",
+    68: "Nyame Dua",
+    69: "Nyame Nnwu Na Mawu",
+    70: "Nyame Nti",
+    71: "Nyame Ye Ohene",
+    72: "Nyansapo",
+    73: "Odo Nyera Fie Kwan",
+    74: "Ohen Adwae",
+    75: "Ohene",
+    76: "Ohene Aniwa",
+    77: "Ohene Tuo",
+    78: "Okodee Mmowere",
+    79: "Okuafo Pa",
+    80: "Onyakopon Atom Nti Biribiara Beye Yie", 
+    81: "Onyakopon Aniwa",
+    82: "Onyakopon Ne Yen Ntena",
+    83: "Osidan",
+    84: "Osram",
+    85: "Osram Ne Nsromma",
+    86: "Ow Foro Adobe",
+    87: "Owuo Atwedee",
+    88: "Owuo Kum Nyame",
+    89: "Pa Gya",
+    90: "Sankofa",
+    91: "Sepow",
+    92: "Sesa Woruban",
+    93: "Sunsum",
+    94: "Tabon",
+    95: "Tamfo Bebre",
+    96: "Tumi Te Se Kosua",
+    97: "Tuo Ne Akofena",
+    98: "Wawa Aba",
+    99: "Wo Nsa Da Mu A",
+    100: "Wuforo Dua Pa"
+}
+
+SYMBOL_INFO = {
+
+}
 
 @st.cache_resource
 def load_model_cached():
@@ -15,25 +122,21 @@ def get_base64(file_path):
         return base64.b64encode(image_file.read()).decode()
 
 
-background_image_path = get_base64("INTRO PROJECT 1.png")
-
+background_image_path = get_base64("INTRO PROJECT_BG.jpeg")
 
 st.markdown(
     f"""
     <style>
 
     .stApp {{
+        min-height: 100vh;
         background-image: 
         linear-gradient(
             rgba(250, 243, 224, 0.65),
             rgba(250, 243, 224, 0.65)
         ),
-        url("data:image/png;base64,{background_image_path}");
+        url("data:image/jpeg;base64,{background_image_path}");
 
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
-        background-attachment: fixed;
     }}
 
 
@@ -61,7 +164,7 @@ st.markdown(
 
     /* Buttons */
     .stButton button {{
-        background-color: #D4AF37;
+        background-color: #FFD700;
         color: white;
         border-radius: 10px;
         border: none;
@@ -109,7 +212,7 @@ st.markdown(
 st.title("𓂀 AdinkraViz")
 st.subheader("Explore Akan Heritage Through Adinkra Symbols.")
 st.write(
-    """ 🌿 **Where artificial intelligence meets Akan heritage.**
+    """  **Where artificial intelligence meets Akan heritage.**
 
     Welcome to AdinkraViz! Upload an image to uncover its meaning, history, and cultural significance.
     """
@@ -157,8 +260,11 @@ if st.button("Predict"):
             temp_file.write(st.session_state.uploaded_image.getbuffer())
             temp_file_path = temp_file.name
 
-        prediction = predict_image(load_model_cached(), temp_file_path)
+        with st.spinner("Analyzing the image..."):
+            prediction = predict_image(load_model_cached(), temp_file_path)
 
-        st.success(f"Prediction class ID: {prediction}")
+        symbol_name = CLASS_NAMES[prediction]
+        st.success(f"Prediction: {symbol_name}")
+        st.write(f"Symbol Meaning: {SYMBOL_INFO[symbol_name]['meaning']}")
 
         os.remove(temp_file_path)
