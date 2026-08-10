@@ -1,13 +1,24 @@
 import torch
 
+from adinkra_cnn import AdinkraCNN
+from data_pipeline.dataset_loader import get_dataloaders
+
+
+dataset_path = '/content/Intro_to_AI_project/dataset/raw' 
+
+
+_, _, test_loader, num_classes, _ = get_dataloaders(data_dir=dataset_path, batch_size=32)
+
+print(f"Successfully loaded test_loader with {len(test_loader)} batches!")
+
 # 1. Prepare the Device and Architecture
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 # (Assuming your architecture class is named AdinkraCNN - adjust if yours is named differently)
-# model = AdinkraCNN(num_classes=96).to(device) 
+model = AdinkraCNN(num_classes=96).to(device)
 
 # Load the exact weights from your 81.03% run
-model.load_state_dict(torch.load('best_adinkra_model.pth (81)', map_location=device))
+model.load_state_dict(torch.load('/content/Intro_to_AI_project/best_adinkra_model (81).pth', map_location=device))
 
 # 2. Safety Lock 1: Disable training layers like Dropout
 model.eval()
