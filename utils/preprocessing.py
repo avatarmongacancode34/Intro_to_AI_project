@@ -1,70 +1,60 @@
 from pathlib import Path
 import cv2
 import numpy as np
+import shutil
 
-
-
-
-
+# ==========================================
 # 1. PROJECT PATHS
+# ==========================================
 
-
-# Find the main project folder automatically
 PROJECT_ROOT = Path(__file__).resolve().parent
 
-# Original dataset
 RAW_DATA = PROJECT_ROOT / "dataset" / "raw"
-
-# Where processed images will be saved
 PROCESSED_DATA = PROJECT_ROOT / "dataset" / "processed"
 
 
-
+# ==========================================
 # 2. SETTINGS
+# ==========================================
 
-
-# CNN input size
 IMAGE_SIZE = 224
 
-# Supported image formats
 SUPPORTED_FORMATS = [".jpg", ".jpeg", ".png"]
 
 
-
-# 3. RESIZE IMAGE WHILE PRESERVING ASPECT RATIO
-
+# ==========================================
+# 3. RESIZE IMAGE WHILE PRESERVING
+#    ASPECT RATIO
+# ==========================================
 
 def resize_with_padding(image, size=224):
 
-    # Get original height and width
     height, width = image.shape[:2]
 
-    # Calculate scale needed to fit image inside
-    # the target square
+    # Calculate scale
     scale = min(size / width, size / height)
 
     # Calculate new dimensions
     new_width = int(width * scale)
     new_height = int(height * scale)
 
-    # Resize while keeping the original aspect ratio
+    # Resize image
     resized = cv2.resize(
         image,
         (new_width, new_height),
         interpolation=cv2.INTER_AREA
     )
 
-    # Create a square canvas
+    # Create white square canvas
     canvas = np.ones(
-    (size, size, 3),
-    dtype=np.uint8
+        (size, size, 3),
+        dtype=np.uint8
     ) * 255
 
-    # Calculate position for centered image
+    # Center the image
     x_offset = (size - new_width) // 2
     y_offset = (size - new_height) // 2
 
-    # Place resized image in the center
     canvas[
         y_offset:y_offset + new_height,
         x_offset:x_offset + new_width
@@ -73,30 +63,75 @@ def resize_with_padding(image, size=224):
     return canvas
 
 
-
-# 4. PROCESS THE DATASET
-
+# ==========================================
+# 4. PROCESS DATASET
+# ==========================================
 
 def process_dataset():
 
-    # Create processed folder if it doesn't exist
-    PROCESSED_DATA.mkdir(parents=True, exist_ok=True)
+    # Check raw dataset
+    if not RAW_DATA.exists():
+        print(f"ERROR: Dataset not found: {RAW_DATA}")
+        return
+
+    # Remove old processed dataset
+    if PROCESSED_DATA.exists():
+
+        print("Removing old processed dataset...")
+
+        shutil.rmtree(PROCESSED_DATA)
+
+    # Create new processed folder
+    PROCESSED_DATA.mkdir(
+        parents=True,
+        exist_ok=True
+    )
 
     processed_count = 0
     failed_count = 0
+    class_count = 0
 
-    # Go through every symbol folder
-    for class_folder in RAW_DATA.iterdir():
+    # ------------------------------------------
+    # Go through every class
+    # ------------------------------------------
 
-        if not class_folder.is_dir():
-            continue
+    class_folders = sorted([
+        folder
+        for folder in RAW_DATA.iterdir()
+        if folder.is_dir()
+    ])
 
-        # Create matching folder in processed/
-        output_folder = PROCESSED_DATA / class_folder.name
-        output_folder.mkdir(parents=True, exist_ok=True)
+    print("\n==========================================")
+    print("STARTING DATASET PREPROCESSING")
+    print("==========================================")
 
+    print(f"Classes found: {len(class_folders)}")
+    print(f"Input size: {IMAGE_SIZE}x{IMAGE_SIZE}")
+
+    # ------------------------------------------
+    # Process each class
+    # ------------------------------------------
+
+    for class_folder in class_folders:
+
+        class_count += 1
+
+        output_folder = (
+            PROCESSED_DATA / class_folder.name
+        )
+
+        output_folder.mkdir(
+            parents=True,
+            exist_ok=True
+        )
+
+        class_processed = 0
+
+        # --------------------------------------
         # Process every image
-        for image_file in class_folder.iterdir():
+        # --------------------------------------
+
+        for image_file in sorted(class_folder.iterdir()):
 
             # Ignore unsupported files
             if image_file.suffix.lower() not in SUPPORTED_FORMATS:
@@ -105,53 +140,92 @@ def process_dataset():
             # Read image
             image = cv2.imread(str(image_file))
 
-            # Check if OpenCV successfully read it
+            # Check if image was readable
             if image is None:
-                print(f"Could not read: {image_file}")
+
+                print(
+                    f"Could not read: {image_file}"
+                )
+
                 failed_count += 1
                 continue
 
-            # Resize while maintaining aspect ratio
+            # Resize and pad
             processed_image = resize_with_padding(
                 image,
                 IMAGE_SIZE
             )
 
-            # Save as JPG
-            # Create a unique output filename
+            # ----------------------------------
+            # IMPORTANT:
+            # Prevent filename collisions
+            # ----------------------------------
+
+            extension = image_file.suffix.lower().replace(".", "")
+
             output_filename = (
-                f"{image_file.stem}_{image_file.suffix[1:]}.jpg"
-                )
+                f"{image_file.stem}_{extension}.jpg"
+            )
 
-            output_file = output_folder / output_filename
+            output_file = (
+                output_folder / output_filename
+            )
 
+            # Save processed image
             success = cv2.imwrite(
                 str(output_file),
                 processed_image
             )
 
             if success:
+
                 processed_count += 1
-                print(f"Processed: {image_file.name}")
+                class_processed += 1
+
             else:
+
+                print(
+                    f"Could not save: {image_file}"
+                )
+
                 failed_count += 1
-                print(f"Could not save: {image_file.name}")
 
-    
-    # 5. SUMMARY
-    
+        print(
+            f"[{class_count}/{len(class_folders)}] "
+            f"{class_folder.name}: "
+            f"{class_processed} images"
+        )
 
-    print("\n==============================")
+    # ==========================================
+    # 5. FINAL SUMMARY
+    # ==========================================
+
+    print("\n==========================================")
     print("PREPROCESSING COMPLETE")
-    print("==============================")
+    print("==========================================")
 
-    print("Successfully processed:", processed_count)
-    print("Failed:", failed_count)
+    print(
+        f"Classes processed     : {class_count}"
+    )
+
+    print(
+        f"Successfully processed: {processed_count}"
+    )
+
+    print(
+        f"Failed                : {failed_count}"
+    )
+
+    print(
+        f"Output directory      : {PROCESSED_DATA}"
+    )
+
+    print("==========================================")
 
 
-
-# 6. RUN THE PROGRAM
-
+# ==========================================
+# 6. RUN PROGRAM
+# ==========================================
 
 if __name__ == "__main__":
     process_dataset()

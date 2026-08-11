@@ -1,96 +1,112 @@
 import torch
 import torch.nn as nn
 import torch.optim as optim
-from torch.utils.data import DataLoader, TensorDataset
-from adinkra_cnn import AdinkraCNN
 import time
 
-def train_model(model, train_loader,val_loader,criterion,optimizer, num_epochs,device):
-  print(f"Starting training for {num_epochs} epochs on {device}\n")
+# Import our custom modules
+from data_pipeline.dataset_loader import get_dataloaders
+from adinkra_cnn import AdinkraCNN
 
-  best_val_loss = float('inf')
+# ============================================================
+# CONFIGURATION
+# ============================================================
+DATASET_PATH = "dataset/raw"
+BATCH_SIZE = 32
+NUM_EPOCHS = 120
+LEARNING_RATE = 0.001
+SAVE_PATH = "best_adinkra_model.pth"
 
-  for epoch in range(num_epochs):
-    start_time = time.time()
+def train_model():
+    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    print(f"Using device: {device}")
 
-    # train
-    model.train()
-    running_train_loss = 0.0
-    correct_train = 0
-    total_train = 0
+    # 1. Load Data
+    print("Loading datasets...")
+    train_loader, val_loader, test_loader, num_classes, class_names = get_dataloaders(
+        data_dir=DATASET_PATH,
+        batch_size=BATCH_SIZE
+    )
+    print(f"Detected {num_classes} classes.")
 
-    for images, labels in train_loader:
-      images = images.to(device)
-      labels =  labels.to(device)
+    # 2. Initialize Model, Loss, and Optimizer
+    model = AdinkraCNN(num_classes=num_classes).to(device)
+    criterion = nn.CrossEntropyLoss(label_smoothing=0.1)
+    optimizer = optim.Adam(model.parameters(), lr=0.001, weight_decay=1e-4)
+    from torch.optim.lr_scheduler import ReduceLROnPlateau
+    scheduler = ReduceLROnPlateau(optimizer, mode='max', factor=0.5, patience=3)
 
-      optimizer.zero_grad()
-      outputs = model(images)
-      loss = criterion(outputs,labels)
-      loss.backward()
-      optimizer.step()
+    best_val_acc = 0.0
 
-      # tracking stats
+    # 3. Training Loop
+    print("\nStarting training...")
+    for epoch in range(NUM_EPOCHS):
+        start_time = time.time()
 
-      running_train_loss += loss.item() * images.size(0)
-      _, predicted = torch.max(outputs.data, 1)
-      total_train += labels.size(0)
-      correct_train += (predicted == labels).sum().item()
+        # --- TRAINING PHASE ---
+        model.train()
+        running_loss = 0.0
+        correct_train = 0
+        total_train = 0
 
-    epoch_train_loss = running_train_loss / len(train_loader.dataset)
-    epoch_train_acc = 100 * correct_train / total_train
+        for images, labels in train_loader:
+            images, labels = images.to(device), labels.to(device)
 
-    model.eval()
-    running_val_loss = 0.0
-    correct_val = 0
-    total_val = 0
+            # Zero the parameter gradients
+            optimizer.zero_grad()
 
-    with torch.no_grad():
-      for images, labels in val_loader:
-        images = images.to(device)
-        labels = labels.to(device)
+            # Forward pass
+            outputs = model(images)
+            loss = criterion(outputs, labels)
 
-        outputs = model(images)
-        loss = criterion(outputs,labels)
+            # Backward pass and optimize
+            loss.backward()
+            optimizer.step()
 
-        running_val_loss += loss.item() * images.size(0)
-        _, predicted = torch.max(outputs.data, 1)
-        total_val += labels.size(0)
-        correct_val += (predicted == labels).sum().item()
+            # Calculate training accuracy
+            running_loss += loss.item()
+            _, predicted = torch.max(outputs.data, 1)
+            total_train += labels.size(0)
+            correct_train += (predicted == labels).sum().item()
 
-    epoch_val_loss = running_val_loss / len(val_loader.dataset)
-    epoch_val_acc = 100 * correct_val / total_val
+        train_acc = 100 * correct_train / total_train
+        train_loss = running_loss / len(train_loader)
 
-    #saving best model
-    if epoch_val_loss < best_val_loss:
-      best_val_loss = epoch_val_loss
-      torch.save(model.state_dict(), 'best_adinkra_model.pth')
-      saved_msg = "Model saved"
-    else:
-      saved_msg = "Model not saved"
-    end_time = time.time()
+        # validation
+        model.eval()
+        val_loss = 0.0
+        correct_val = 0
+        total_val = 0
 
-    print(f"Epoch [{epoch+1}/{num_epochs}] "
-              f"Time: {end_time - start_time:.1f}s | "
-              f"Train Loss: {epoch_train_loss:.4f} Acc: {epoch_train_acc:.4f} | "
-              f"Val Loss: {epoch_val_loss:.4f} Acc: {epoch_val_acc:.4f}{saved_msg}")
-              
-  print("\nTraining complete. Best weights saved to 'best_adinkra_model.pth'.")
-  return model
+        with torch.no_grad():
+            for images, labels in val_loader:
+                images, labels = images.to(device), labels.to(device)
+
+                outputs = model(images)
+                loss = criterion(outputs, labels)
+
+                val_loss += loss.item()
+                _, predicted = torch.max(outputs.data, 1)
+                total_val += labels.size(0)
+                correct_val += (predicted == labels).sum().item()
+
+        val_acc = 100 * correct_val / total_val
+        val_loss = val_loss / len(val_loader)
+        epoch_duration = time.time() - start_time
+
+        print(f"Epoch [{epoch+1}/{NUM_EPOCHS}] - Time: {epoch_duration:.0f}s "
+              f"- Train Loss: {train_loss:.4f}, Acc: {train_acc:.2f}% "
+              f"- Val Loss: {val_loss:.4f}, Val Acc: {val_acc:.2f}%")
+
+        # 4. Save the Best Model
+        if val_acc > best_val_acc:
+            best_val_acc = val_acc
+            torch.save(model.state_dict(), SAVE_PATH)
+            print(f"  => Validation accuracy improved. Saved model to {SAVE_PATH}")
+        scheduler.step(val_acc)
+
+    print(f"\nTraining Complete. Best Validation Accuracy: {best_val_acc:.2f}%")
+
 if __name__ == "__main__":
-  device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-
-  NUM_CLASSES = 10
-  NUM_EPOCHS = 5
-  BATCH_SIZE = 16
-  LEARNING_RATE = 0.001
-
-  from data_pipeline.dataset_loader import get_dataloaders
-  train_loader, val_loader = get_dataloaders(batch_size=BATCH_SIZE)
-
-  model = AdinkraCNN(num_classes=NUM_CLASSES).to(device)
-  criterion = nn.CrossEntropyLoss()
-  optimizer = optim.Adam(model.parameters(), lr=LEARNING_RATE)
-
-  trained_model = train_model(model, train_loader,val_loader,criterion,optimizer, NUM_EPOCHS,device)
+    train_model()
 
 

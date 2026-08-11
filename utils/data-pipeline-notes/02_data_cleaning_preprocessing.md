@@ -95,3 +95,54 @@ information.
 - Current dataset: 783 images
 - Reason for removal: irrelevant/non-Adinkra images
 - Raw dataset was otherwise preserved.
+
+2. # Adinkra AI — Dataset Preprocessing
+
+## 1. Overview
+
+The preprocessing stage prepares the raw Adinkra symbol images for use by the Convolutional Neural Network (CNN).
+
+The raw dataset contains images of **101 different Adinkra symbol classes**. The images come in different formats, dimensions, and aspect ratios. A CNN requires the input images to have a consistent size and format.
+
+Therefore, the preprocessing pipeline performs the following operations:
+
+1. Reads images from the raw dataset.
+2. Identifies the 101 symbol classes.
+3. Validates supported image formats.
+4. Reads images using OpenCV.
+5. Resizes images to **224 × 224 pixels**.
+6. Preserves the original image aspect ratio.
+7. Adds white padding where necessary.
+8. Saves the processed images in a structured directory.
+9. Converts all processed images to `.jpg`.
+10. Reports successful and failed preprocessing operations.
+
+---
+
+# 2. Dataset Structure
+
+The raw dataset follows a folder-based classification structure.
+
+Each folder represents one Adinkra symbol class.
+
+```text
+dataset/
+│
+├── raw/
+│   ├── Aban/
+│   │   ├── image1.jpeg
+│   │   ├── image2.png
+│   │   └── ...
+│   │
+│   ├── Abe_Dua/
+│   │   ├── image1.jpeg
+│   │   └── ...
+│   │
+│   ├── Adinkrahene/
+│   │   └── ...
+│   │
+│   └── ...
+│
+└── processed/
+
+Data augmentation was implemented at training time using PyTorch's torchvision.transforms. Random rotation, horizontal flipping, and random cropping are applied to training images to increase variation and improve the model's ability to generalize. Validation and testing images are not randomly augmented to ensure fair evaluation.
