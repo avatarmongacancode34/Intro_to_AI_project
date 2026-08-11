@@ -1,120 +1,69 @@
 import base64
-import streamlit as st
-import tempfile
+import json
 import os
+from pathlib import Path
+import tempfile
+import streamlit as st
+
 from inference import load_model, predict_image
 
-CLASS_NAMES = {
-    0: "Aban",
-    1: "Abe Dua",
-    2: "Adinkrahene Dua",
-    3: "Adinkrahene",
-    4: "Adwera",
-    5: "Adwo",
-    6: "Agyinduwura",
-    7: "Akoben",
-    8: "Akofena",
-    9: "Akokonan",
-    10: "Akoma",
-    11: "Akoma Ntoso",
-    12: "Ananse Ntontan",
-    13: "Ani Bere",
-    14: "Asase Ye Duru",
-    15: "Aya",
-    16: "Bese Saka",
-    17: "Bi Nnka Bi",
-    18: "Biribi Wo Soro",
-    19: "Boa Me Na Me Mmoa Wo",
-    20: "Dama Dame",
-    21: "Denkyem",
-    22: "Dono",
-    23: "Duafe",
-    24: "Dwannimmen",
-    25: "Eban",
-    26: "Epa",
-    27: "Ese Ne Tekrema",
-    28: "Fafanto",
-    29: "Fawohudie",
-    30: "Fihankra", 
-    31: "Fofo", 
-    32: "Funtumfunafu Denkyem Funafu",
-    33: "Gye Nyame",
-    34: "Hwemudua",
-    35: "Hye Won Hye",
-    36: "Kae Me",
-    37: "Kete Pa",
-    38: "Kintinkantan",
-    39: "Kojo Baiden",
-    40: "Kontire Ne Akwamu",
-    41: "Krado",
-    42: "Kramo Bone",
-    43: "Kuntinkantan",
-    44: "Kwatakye Atiko",
-    45: "Mako",
-    46: "Mate Masie",
-    47: "Mframadan",
-    48: "Mmere Dane",
-    49: "Mmomudwan",
-    50: "Mmusuyidee",
-    51: "Mpatapo",
-    52: "Mpuannum",
-    53: "Nea Onnim No Sua A Ohu",
-    54: "Nea Ope Se Nkrofoo Ye Ma Wo No - Ye Saa Ara Ma Won",
-    55: "Nea Ope Se Obedi Hene",
-    56: "Nkonsonkonson",
-    57: "Nkontim",
-    58: "Nkuma Kese",
-    59: "Nkyimu",
-    60: "Nkyinkyim",
-    61: "Nnonnowa",
-    62: "Nsaa", 
-    63: "Nserewa",
-    64: "Nsoromma",
-    65: "Nya Abotere",
-    66: "Nyame Akruma",
-    67: "Nyame Biribi Wo Soro",
-    68: "Nyame Dua",
-    69: "Nyame Nnwu Na Mawu",
-    70: "Nyame Nti",
-    71: "Nyame Ye Ohene",
-    72: "Nyansapo",
-    73: "Odo Nyera Fie Kwan",
-    74: "Ohen Adwae",
-    75: "Ohene",
-    76: "Ohene Aniwa",
-    77: "Ohene Tuo",
-    78: "Okodee Mmowere",
-    79: "Okuafo Pa",
-    80: "Onyakopon Atom Nti Biribiara Beye Yie", 
-    81: "Onyakopon Aniwa",
-    82: "Onyakopon Ne Yen Ntena",
-    83: "Osidan",
-    84: "Osram",
-    85: "Osram Ne Nsromma",
-    86: "Ow Foro Adobe",
-    87: "Owuo Atwedee",
-    88: "Owuo Kum Nyame",
-    89: "Pa Gya",
-    90: "Sankofa",
-    91: "Sepow",
-    92: "Sesa Woruban",
-    93: "Sunsum",
-    94: "Tabon",
-    95: "Tamfo Bebre",
-    96: "Tumi Te Se Kosua",
-    97: "Tuo Ne Akofena",
-    98: "Wawa Aba",
-    99: "Wo Nsa Da Mu A",
-    100: "Wuforo Dua Pa"
-}
+# PATHS & DYNAMIC METADATA LOADING
+BASE_DIR = Path(__file__).resolve().parent
+METADATA_PATH = BASE_DIR / "adinkra_translation_key.json"
+BG_IMAGE_PATH = BASE_DIR / "INTRO PROJECT_BG.jpeg"
 
-SYMBOL_INFO = {
 
-}
+def load_metadata(json_path=METADATA_PATH):
+    """
+    Dynamically load class names and symbol details from the JSON file.
+    Safely handles both flat strings and nested dictionaries.
+    """
+    json_path = Path(json_path)
+
+    if not json_path.exists():
+        raise FileNotFoundError(f"Metadata file not found at: {json_path}")
+
+    with open(json_path, "r", encoding="utf-8") as f:
+        metadata = json.load(f)
+
+    class_names = {}
+    symbol_info = {}
+
+    for key, value in metadata.items():
+        idx = int(key)
+
+        # If the JSON just maps directly to a string name (e.g., "0": "Aban")
+        if isinstance(value, str):
+            name = value
+            class_names[idx] = name
+
+        # If the JSON is a dictionary with names and meanings (e.g., "0": {"name": "Aban"})
+        elif isinstance(value, dict):
+            name = value.get("name", f"Class {idx}")
+            class_names[idx] = name
+
+            meaning = value.get("meaning", "")
+            if meaning:
+                symbol_info[name] = {"meaning": meaning}
+
+    return class_names, symbol_info
+
+
+# Dynamically populate class names and meanings from JSON
+CLASS_NAMES, SYMBOL_INFO = load_metadata()
+
 
 @st.cache_resource
 def load_model_cached():
-    return load_model()
+    """
+    Cache and load model dynamically using the total count from metadata.
+    """
+    num_classes = len(CLASS_NAMES)
+    try:
+        return load_model(num_classes=num_classes)
+    except TypeError:
+        # Fallback if load_model() in inference.py is configured without parameters
+        return load_model()
 
 
 def get_base64(file_path):
@@ -122,7 +71,11 @@ def get_base64(file_path):
         return base64.b64encode(image_file.read()).decode()
 
 
-background_image_path = get_base64("INTRO PROJECT_BG.jpeg")
+# Encode background image safely using absolute path resolution
+if BG_IMAGE_PATH.exists():
+    background_image_path = get_base64(BG_IMAGE_PATH)
+else:
+    background_image_path = ""
 
 st.markdown(
     f"""
@@ -209,7 +162,7 @@ st.markdown(
 )
 
 
-st.title("𓂀 AdinkraViz")
+st.title("𖤓 AdinkraViz")
 st.subheader("Explore Akan Heritage Through Adinkra Symbols.")
 st.write(
     """  **Where artificial intelligence meets Akan heritage.**
@@ -218,20 +171,20 @@ st.write(
     """
 )
 
-# Store uploaded image in memory
+# Store uploaded image in session state (fixed state key consistency)
 if "uploaded_image" not in st.session_state:
     st.session_state.uploaded_image = None
 
 # Upload image
 uploaded_image = st.file_uploader("Upload an image", type=["jpg", "jpeg", "png"])
 
-# save image
-if uploaded_image:
+# Save image to session state
+if uploaded_image is not None:
     st.session_state.uploaded_image = uploaded_image
     st.image(
         uploaded_image,
         caption="Discover Akan heritage through Adinkra symbols",
-        use_column_width=True,
+        use_container_width=True,
     )
 
 # Information section
@@ -260,11 +213,26 @@ if st.button("Predict"):
             temp_file.write(st.session_state.uploaded_image.getbuffer())
             temp_file_path = temp_file.name
 
-        with st.spinner("Analyzing the image..."):
-            prediction = predict_image(load_model_cached(), temp_file_path)
+        try:
+            with st.spinner("Analyzing your Adinkra symbol..."):
+                prediction = predict_image(load_model_cached(), temp_file_path)
 
-        symbol_name = CLASS_NAMES[prediction]
-        st.success(f"Prediction: {symbol_name}")
-        st.write(f"Symbol Meaning: {SYMBOL_INFO[symbol_name]['meaning']}")
+            # Safely resolve index or string outputs
+            if isinstance(prediction, int):
+                symbol_name = CLASS_NAMES.get(prediction, f"Symbol #{prediction}")
+            else:
+                symbol_name = str(prediction)
 
-        os.remove(temp_file_path)
+            st.success(f"Prediction: {symbol_name}")
+
+            if symbol_name in SYMBOL_INFO:
+                meaning = SYMBOL_INFO[symbol_name].get("meaning", "")
+
+                if meaning:
+                    st.info(f"**Meaning:** {meaning}")
+            else:
+                st.info("Information about this symbol is coming soon.")
+
+        finally:
+            if os.path.exists(temp_file_path):
+                os.remove(temp_file_path)
