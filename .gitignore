@@ -5,3 +5,6 @@ dataset/
 raw/
 best_adinkra_model (81).pth/
 .vscode/
+model_evaluation/confusion_matrices/
+model_evaluation/confusion_matrix_101x101.png
+model_evaluation/confusion_matrix_sections/
