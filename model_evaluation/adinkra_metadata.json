@@ -1,60 +1,506 @@
 {
     "0": {
-        "name": "Gye Nyame",
+        "name": "Aban",
         "meaning": "Except for God",
         "proverb": ""
     },
-
     "1": {
-        "name": "Sankofa",
+        "name": "Abe Dua",
         "meaning": "Go back and retrieve it",
         "proverb": ""
     },
-
     "2": {
-        "name": "",
+        "name": "Adinkrahene Dua",
         "meaning": "",
         "proverb": ""
     },
-
     "3": {
-        "name": "",
+        "name": "Adinkrahene",
         "meaning": "",
         "proverb": ""
     },
-
     "4": {
-        "name": "",
+        "name": "Adwera",
         "meaning": "",
         "proverb": ""
     },
-
     "5": {
-        "name": "",
+        "name": "Adwo",
         "meaning": "",
         "proverb": ""
     },
-
     "6": {
-        "name": "",
+        "name": "Agyinduwura",
         "meaning": "",
         "proverb": ""
     },
-
     "7": {
-        "name": "",
+        "name": "Akoben",
         "meaning": "",
         "proverb": ""
     },
-
     "8": {
-        "name": "",
+        "name": "Akofena",
         "meaning": "",
         "proverb": ""
     },
-
     "9": {
-        "name": "",
+        "name": "Akokonan",
+        "meaning": "",
+        "proverb": ""
+    },
+    "10": {
+        "name": "Akoma",
+        "meaning": "",
+        "proverb": ""
+    },
+    "11": {
+        "name": "Akoma Ntoso",
+        "meaning": "",
+        "proverb": ""
+    },
+    "12": {
+        "name": "Ananse Ntontan",
+        "meaning": "",
+        "proverb": ""
+    },
+    "13": {
+        "name": "Ani Bere",
+        "meaning": "",
+        "proverb": ""
+    },
+    "14": {
+        "name": "Asase Ye Duru",
+        "meaning": "",
+        "proverb": ""
+    },
+    "15": {
+        "name": "Aya",
+        "meaning": "",
+        "proverb": ""
+    },
+    "16": {
+        "name": "Bese Saka",
+        "meaning": "",
+        "proverb": ""
+    },
+    "17": {
+        "name": "Bi Nnka Bi",
+        "meaning": "",
+        "proverb": ""
+    },
+    "18": {
+        "name": "Biribi Wo Soro",
+        "meaning": "",
+        "proverb": ""
+    },
+    "19": {
+        "name": "Boa Me Na Me Mmoa Wo",
+        "meaning": "",
+        "proverb": ""
+    },
+    "20": {
+        "name": "Dama Dame",
+        "meaning": "",
+        "proverb": ""
+    },
+    "21": {
+        "name": "Denkyem",
+        "meaning": "",
+        "proverb": ""
+    },
+    "22": {
+        "name": "Dono",
+        "meaning": "",
+        "proverb": ""
+    },
+    "23": {
+        "name": "Duafe",
+        "meaning": "",
+        "proverb": ""
+    },
+    "24": {
+        "name": "Dwannimmen",
+        "meaning": "",
+        "proverb": ""
+    },
+    "25": {
+        "name": "Eban",
+        "meaning": "",
+        "proverb": ""
+    },
+    "26": {
+        "name": "Epa",
+        "meaning": "",
+        "proverb": ""
+    },
+    "27": {
+        "name": "Ese Ne Tekrema",
+        "meaning": "",
+        "proverb": ""
+    },
+    "28": {
+        "name": "Fafanto",
+        "meaning": "",
+        "proverb": ""
+    },
+    "29": {
+        "name": "Fawohudie",
+        "meaning": "",
+        "proverb": ""
+    },
+    "30": {
+        "name": "Fihankra",
+        "meaning": "",
+        "proverb": ""
+    },
+    "31": {
+        "name": "Fofo",
+        "meaning": "",
+        "proverb": ""
+    },
+    "32": {
+        "name": "Funtumfunafu Denkyem Funafu",
+        "meaning": "",
+        "proverb": ""
+    },
+    "33": {
+        "name": "Gye Nyame",
+        "meaning": "",
+        "proverb": ""
+    },
+    "34": {
+        "name": "Hwemudua",
+        "meaning": "",
+        "proverb": ""
+    },
+    "35": {
+        "name": "Hye Won Hye",
+        "meaning": "",
+        "proverb": ""
+    },
+    "36": {
+        "name": "Kae Me",
+        "meaning": "",
+        "proverb": ""
+    },
+    "37": {
+        "name": "Kete Pa",
+        "meaning": "",
+        "proverb": ""
+    },
+    "38": {
+        "name": "Kintinkantan",
+        "meaning": "",
+        "proverb": ""
+    },
+    "39": {
+        "name": "Kojo Baiden",
+        "meaning": "",
+        "proverb": ""
+    },
+    "40": {
+        "name": "Kontire Ne Akwamu",
+        "meaning": "",
+        "proverb": ""
+    },
+    "41": {
+        "name": "Krado",
+        "meaning": "",
+        "proverb": ""
+    },
+    "42": {
+        "name": "Kramo Bone",
+        "meaning": "",
+        "proverb": ""
+    },
+    "43": {
+        "name": "Kuntinkantan",
+        "meaning": "",
+        "proverb": ""
+    },
+    "44": {
+        "name": "Kwatakye Atiko",
+        "meaning": "",
+        "proverb": ""
+    },
+    "45": {
+        "name": "Mako",
+        "meaning": "",
+        "proverb": ""
+    },
+    "46": {
+        "name": "Mate Masie",
+        "meaning": "",
+        "proverb": ""
+    },
+    "47": {
+        "name": "Mframadan",
+        "meaning": "",
+        "proverb": ""
+    },
+    "48": {
+        "name": "Mmere Dane",
+        "meaning": "",
+        "proverb": ""
+    },
+    "49": {
+        "name": "Mmomudwan",
+        "meaning": "",
+        "proverb": ""
+    },
+    "50": {
+        "name": "Mmusuyidee",
+        "meaning": "",
+        "proverb": ""
+    },
+    "51": {
+        "name": "Mpatapo",
+        "meaning": "",
+        "proverb": ""
+    },
+    "52": {
+        "name": "Mpuannum",
+        "meaning": "",
+        "proverb": ""
+    },
+    "53": {
+        "name": "Nea Onnim No Sua A Ohu",
+        "meaning": "",
+        "proverb": ""
+    },
+    "54": {
+        "name": "Nea Ope Se Nkrofoo Ye Ma Wo No - Ye Saa Ara Ma Won",
+        "meaning": "",
+        "proverb": ""
+    },
+    "55": {
+        "name": "Nea Ope Se Obedi Hene",
+        "meaning": "",
+        "proverb": ""
+    },
+    "56": {
+        "name": "Nkonsonkonson",
+        "meaning": "",
+        "proverb": ""
+    },
+    "57": {
+        "name": "Nkontim",
+        "meaning": "",
+        "proverb": ""
+    },
+    "58": {
+        "name": "Nkuma Kese",
+        "meaning": "",
+        "proverb": ""
+    },
+    "59": {
+        "name": "Nkyimu",
+        "meaning": "",
+        "proverb": ""
+    },
+    "60": {
+        "name": "Nkyinkyim",
+        "meaning": "",
+        "proverb": ""
+    },
+    "61": {
+        "name": "Nnonnowa",
+        "meaning": "",
+        "proverb": ""
+    },
+    "62": {
+        "name": "Nsaa",
+        "meaning": "",
+        "proverb": ""
+    },
+    "63": {
+        "name": "Nserewa",
+        "meaning": "",
+        "proverb": ""
+    },
+    "64": {
+        "name": "Nsoromma",
+        "meaning": "",
+        "proverb": ""
+    },
+    "65": {
+        "name": "Nya Abotere",
+        "meaning": "",
+        "proverb": ""
+    },
+    "66": {
+        "name": "Nyame Akruma",
+        "meaning": "",
+        "proverb": ""
+    },
+    "67": {
+        "name": "Nyame Biribi Wo Soro",
+        "meaning": "",
+        "proverb": ""
+    },
+    "68": {
+        "name": "Nyame Dua",
+        "meaning": "",
+        "proverb": ""
+    },
+    "69": {
+        "name": "Nyame Nnwu Na Mawu",
+        "meaning": "",
+        "proverb": ""
+    },
+    "70": {
+        "name": "Nyame Nti",
+        "meaning": "",
+        "proverb": ""
+    },
+    "71": {
+        "name": "Nyame Ye Ohene",
+        "meaning": "",
+        "proverb": ""
+    },
+    "72": {
+        "name": "Nyansapo",
+        "meaning": "",
+        "proverb": ""
+    },
+    "73": {
+        "name": "Odo Nyera Fie Kwan",
+        "meaning": "",
+        "proverb": ""
+    },
+    "74": {
+        "name": "Ohen Adwae",
+        "meaning": "",
+        "proverb": ""
+    },
+    "75": {
+        "name": "Ohene",
+        "meaning": "",
+        "proverb": ""
+    },
+    "76": {
+        "name": "Ohene Aniwa",
+        "meaning": "",
+        "proverb": ""
+    },
+    "77": {
+        "name": "Ohene Tuo",
+        "meaning": "",
+        "proverb": ""
+    },
+    "78": {
+        "name": "Okodee Mmowere",
+        "meaning": "",
+        "proverb": ""
+    },
+    "79": {
+        "name": "Okuafo Pa",
+        "meaning": "",
+        "proverb": ""
+    },
+    "80": {
+        "name": "Onyakopon Atom Nti Biribiara Beye Yie",
+        "meaning": "",
+        "proverb": ""
+    },
+    "81": {
+        "name": "Onyakopon Aniwa",
+        "meaning": "",
+        "proverb": ""
+    },
+    "82": {
+        "name": "Onyakopon Ne Yen Ntena",
+        "meaning": "",
+        "proverb": ""
+    },
+    "83": {
+        "name": "Osidan",
+        "meaning": "",
+        "proverb": ""
+    },
+    "84": {
+        "name": "Osram",
+        "meaning": "",
+        "proverb": ""
+    },
+    "85": {
+        "name": "Osram Ne Nsromma",
+        "meaning": "",
+        "proverb": ""
+    },
+    "86": {
+        "name": "Ow Foro Adobe",
+        "meaning": "",
+        "proverb": ""
+    },
+    "87": {
+        "name": "Owuo Atwedee",
+        "meaning": "",
+        "proverb": ""
+    },
+    "88": {
+        "name": "Owuo Kum Nyame",
+        "meaning": "",
+        "proverb": ""
+    },
+    "89": {
+        "name": "Pa Gya",
+        "meaning": "",
+        "proverb": ""
+    },
+    "90": {
+        "name": "Sankofa",
+        "meaning": "",
+        "proverb": ""
+    },
+    "91": {
+        "name": "Sepow",
+        "meaning": "",
+        "proverb": ""
+    },
+    "92": {
+        "name": "Sesa Woruban",
+        "meaning": "",
+        "proverb": ""
+    },
+    "93": {
+        "name": "Sunsum",
+        "meaning": "",
+        "proverb": ""
+    },
+    "94": {
+        "name": "Tabon",
+        "meaning": "",
+        "proverb": ""
+    },
+    "95": {
+        "name": "Tamfo Bebre",
+        "meaning": "",
+        "proverb": ""
+    },
+    "96": {
+        "name": "Tumi Te Se Kosua",
+        "meaning": "",
+        "proverb": ""
+    },
+    "97": {
+        "name": "Tuo Ne Akofena",
+        "meaning": "",
+        "proverb": ""
+    },
+    "98": {
+        "name": "Wawa Aba",
+        "meaning": "",
+        "proverb": ""
+    },
+    "99": {
+        "name": "Wo Nsa Da Mu A",
+        "meaning": "",
+        "proverb": ""
+    },
+    "100": {
+        "name": "Wuforo Dua Pa",
         "meaning": "",
         "proverb": ""
     }

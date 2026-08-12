@@ -62,4 +62,4 @@ def get_dataloaders(batch_size=32):
     print(f"Training images: {len(train_dataset)}")
     print(f"Validation images: {len(val_dataset)}")
 
-    return train_loader, val_loader
+    return train_loader, val_loader, test_loader

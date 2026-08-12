@@ -1,0 +1,7 @@
+﻿__pycache__/
+*.pyc
+*.pth
+dataset/
+raw/
+best_adinkra_model (81).pth/
+.vscode/
