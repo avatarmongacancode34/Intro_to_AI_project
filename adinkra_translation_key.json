@@ -1,98 +1,386 @@
 {
-    "0": "Aban",
-    "1": "Abe_Dua",
-    "2": "Adikrahene_Dua",
-    "3": "Adinkrahene",
-    "4": "Adwera",
-    "5": "Adwo",
-    "6": "Agyinduwura",
-    "7": "Akoben",
-    "8": "Akofena",
-    "9": "Akokonan",
-    "10": "Akoma",
-    "11": "Akoma_Ntoso",
-    "12": "Ananse_Ntontan",
-    "13": "Ani_Bere",
-    "14": "Asase_Ye_Duru",
-    "15": "Aya",
-    "16": "Bese_Saka",
-    "17": "Bi_Nnka_Bi",
-    "18": "Biribi_Wo_Soro",
-    "19": "Boa_Me_Na_Me_Boa_Wo",
-    "20": "Dame_Dame",
-    "21": "Denkyem",
-    "22": "Dono",
-    "23": "Duafe",
-    "24": "Dwannimmen",
-    "25": "Eban",
-    "26": "Epa",
-    "27": "Ese_Ne_Tekrema",
-    "28": "Fafanto",
-    "29": "Fawohudie",
-    "30": "Fihankra",
-    "31": "Fofo",
-    "32": "Funtumfunafu_Denkyem_Funafu",
-    "33": "Gye_Nyame",
-    "34": "Hwemudua",
-    "35": "Hye_Won_Hye",
-    "36": "Kae_Me",
-    "37": "Kete_Pa",
-    "38": "Kintinkantan",
-    "39": "Kojo_Baiden",
-    "40": "Kontire_Ne_Akwamu",
-    "41": "Krado",
-    "42": "Kramo_Bone",
-    "43": "Kuntinkantan",
-    "44": "Kwatakye_Atiko",
-    "45": "Mako",
-    "46": "Mate_Masie",
-    "47": "Mframadan",
-    "48": "Mmere_Dane",
-    "49": "Mmomudwan",
-    "50": "Mmusuyidee",
-    "51": "Mpatapo",
-    "52": "Mpuannum",
-    "53": "Nea_Onnim_No_Sua_A_Ohu",
-    "54": "Nea_Ope_Se_Nkrofoo_Ye_Ma_Wo_No-_Ye_Saa_Ara_Ma_won",
-    "55": "Nea_Ope_Se_Obedi_Hene",
-    "56": "Nkonsonkonson",
-    "57": "Nkontim",
-    "58": "Nkuma_Kese",
-    "59": "Nkyimu",
-    "60": "Nkyinkyim",
-    "61": "Nnonnowa",
-    "62": "Nsaa",
-    "63": "Nserewa",
-    "64": "Nsoromma",
-    "65": "Nya_Abotere",
-    "66": "Nyame_Akruma",
-    "67": "Nyame_Biribi_Wo_Soro",
-    "68": "Nyame_Dua",
-    "69": "Nyame_Nnwu_Na_Mawu",
-    "70": "Nyame_Nti",
-    "71": "Nyame_Ye_Ohene",
-    "72": "Nyansapo",
-    "73": "Odo_Nyera_Fie_Kwan",
-    "74": "Ohen_Adwae",
-    "75": "Ohene",
-    "76": "Ohene_Aniwa",
-    "77": "Okuafo_Pa",
-    "78": "Onyakopon_Adom_Nti_Biribiara_Beye_Yie_African_Adinkra_Weddin",
-    "79": "Onyakopon_Aniwa",
-    "80": "Osidan",
-    "81": "Osram_Ne_Nsoromma",
-    "82": "Owo_Foro_Adobe",
-    "83": "Owuo_Atwedee",
-    "84": "Pa_Gya",
-    "85": "Sankofa",
-    "86": "Sepow",
-    "87": "Sesa_Woruban",
-    "88": "Sunsum",
-    "89": "Tabon",
-    "90": "Tamfo_Bebre",
-    "91": "Tumi_Te_Se_Kosua",
-    "92": "Tuo_Ne_Akofena",
-    "93": "Wawa_Aba",
-    "94": "Wo_Nsa_Da_Mu_A",
-    "95": "Wuforo_Dua_Pa_A"
+  "0": {
+    "name": "Aban",
+    "meaning": "Fortress (or castle). A symbol of strength, seat of power, authority, and magnificence."
+  },
+  "1": {
+    "name": "Abe_Dua",
+    "meaning": "Palm tree. A symbol of wealth, resourcefulness, and self-sufficiency."
+  },
+  "2": {
+    "name": "Adikrahene_Dua",
+    "meaning": ""
+  },
+  "3": {
+    "name": "Adinkrahene",
+    "meaning": "King of the Adinkra symbols. A symbol for authority, leadership, and charisma. Also a symbol for qualities associated with kings. Adinkrahene is reportedly the inspiration for the design of the other symbols."
+  },
+  "4": {
+    "name": "Adwera",
+    "meaning": ""
+  },
+  "5": {
+    "name": "Adwo",
+    "meaning": "Calmness. A symbol for peace, tranquility, and quiet."
+  },
+  "6": {
+    "name": "Agyinduwura",
+    "meaning": ""
+  },
+  "7": {
+    "name": "Akoben",
+    "meaning": "War horn. A symbol of a call to action, readiness to be called to action, readiness, and voluntarism."
+  },
+  "8": {
+    "name": "Akofena",
+    "meaning": "A sword of war (or the state ceremonial swords). A symbol of state authority, legality, the legitimized authority of a ruler, recognition of gallantry of heroic deeds. Ghana's coat of arms shows one of these ceremonial swords crossed with a linguist's staff in its top left quadrant."
+  },
+  "9": {
+    "name": "Akokonan",
+    "meaning": "The foot of a hen. A symbol for discipline coupled with care and nurturing; from the Akan proverb, 'Akoko nan tia ba na enkum ba,' literally, 'The foot of a hen steps on the child (chick) but it doesn't kill the child (chick).'"
+  },
+  "10": {
+    "name": "Akoma",
+    "meaning": "Heart. A symbol of love, goodwill, patience, faithfulness, fondness, endurance, and consistency."
+  },
+  "11": {
+    "name": "Akoma_Ntoso",
+    "meaning": "Joining of hearts. A symbol of agreement, togetherness and unity or a charter. An amplification of the concept of Akoma"
+  },
+  "12": {
+    "name": "Ananse_Ntontan",
+    "meaning": "Spider's web. A symbol of wisdom, craftiness, creativity, and the complexities of life. It is the web of Ananse, the crafty spider who is preeminent in African folklore."
+  },
+  "13": {
+    "name": "Ani_Bere",
+    "meaning": ""
+  },
+  "14": {
+    "name": "Asase_Ye_Duru",
+    "meaning": "The earth has weight. A symbol of providence and the divinity of Mother Earth."
+  },
+  "15": {
+    "name": "Aya",
+    "meaning": "Fern. A symbol of endurance, independence, defiance against difficulties, hardiness, perseverance, and resourcefulness."
+  },
+  "16": {
+    "name": "Bese_Saka",
+    "meaning": "Bunch of cola nuts. A symbol of affluence, power, abundance, and plenty. Also a symbol of togetherness and unity."
+  },
+  "17": {
+    "name": "Bi_Nnka_Bi",
+    "meaning": "Let no one bite the other. A symbol of justice, fairplay, freedom, peace, forgiveness, unity, harmony, and the avoidance of conflict or strife."
+  },
+  "18": {
+    "name": "Biribi_Wo_Soro",
+    "meaning": ""
+  },
+  "19": {
+    "name": "Boa_Me_Na_Me_Boa_Wo",
+    "meaning": "Help me and let me help you. A symbol of cooperation and interdependence. From the aphorism, 'Boa me na me mmoa wo,' to wit 'Help me and let me help you' or, 'Benkum dware nifa na nifa nso adware benkum,' to wit, 'The left (hand) washes the right and the right washes the left.'"
+  },
+  "20": {
+    "name": "Dame_Dame",
+    "meaning": "Checkered. A symbol of craftiness, intelligence, and strategy."
+  },
+  "21": {
+    "name": "Denkyem",
+    "meaning": ""
+  },
+  "22": {
+    "name": "Dono",
+    "meaning": "The tension talking drum. A symbol of appelation, praise, goodwill and rhythm."
+  },
+  "23": {
+    "name": "Duafe",
+    "meaning": "Wooden comb. A symbol of feminine consideration or good feminine qualities such as patience, prudence, fondness, love, and care."
+  },
+  "24": {
+    "name": "Dwannimmen",
+    "meaning": ""
+  },
+  "25": {
+    "name": "Eban",
+    "meaning": "Fence. A symbol of safety, security, and love."
+  },
+  "26": {
+    "name": "Epa",
+    "meaning": "Handcuffs. A symbol of law and justice."
+  },
+  "27": {
+    "name": "Ese_Ne_Tekrema",
+    "meaning": "Teeth and tongue. A symbol of improvement, advancement, growth, the need for friendliness and interdependence."
+  },
+  "28": {
+    "name": "Fafanto",
+    "meaning": "Butterfly. A symbol of tenderness, gentleness, honesty, and fragility."
+  },
+  "29": {
+    "name": "Fawohudie",
+    "meaning": "Freedom or independence. A symbol of freedom, independence, emancipation, self-determination, and self-government. From the proverb, 'Fawohodie ne obre na enam,' literally, 'Freedom walks with suffering,' that is, 'Freedom or independence comes with responsibilities.'"
+  },
+  "30": {
+    "name": "Fihankra",
+    "meaning": "An enclosed or secured compound house. A symbol of brotherhood, safety, security, completeness, and solidarity."
+  },
+  "31": {
+    "name": "Fofo",
+    "meaning": "A flowering plant (bidens pilosa). A symbol of warning against jealousy and covetousness."
+  },
+  "32": {
+    "name": "Funtumfunafu_Denkyem_Funafu",
+    "meaning": "Conjoined crocodiles. A symbol of unity in diversity giving a common destiny; sharing; from the proverb, 'Funtumfrafu denkyemfrafu, wowo yafunu koro nanso wonya biribi a wofom efiri se aduane no de no yete no wo menetwitwie mu,' to wit, Funtumfrafu and Denkyemfrafu share a stomach but when they get something (food) they strive over it because the sweetness of the food is felt as it passes through the throat."
+  },
+  "33": {
+    "name": "Gye_Nyame",
+    "meaning": "Except God. A symbol expressing the omnipotence and supremacy of God. It is arguably the most popular Adinkra symbol in Ghana, reflecting the deep spirituality of its people."
+  },
+  "34": {
+    "name": "Hwemudua",
+    "meaning": "Measuring rod (rod of investigation) or rule. A symbol of excellence, superior  quality, perfection, knowledge, and critical examination."
+  },
+  "35": {
+    "name": "Hye_Won_Hye",
+    "meaning": "Burn you won't burn (fig. unburnable). A symbol of toughness and imperishability; also a symbol of permanence."
+  },
+  "36": {
+    "name": "Kae_Me",
+    "meaning": ""
+  },
+  "37": {
+    "name": "Kete_Pa",
+    "meaning": "Good bed. A symbol of good marraige, successful marriage, and good care. From the expression, 'Obaa ko aware pa a na yede no to kete pa so,' to wit, 'It is when a woman enters a good marriage that she is put on a good bed.'"
+  },
+  "38": {
+    "name": "Kintinkantan",
+    "meaning": ""
+  },
+  "39": {
+    "name": "Kojo_Baiden",
+    "meaning": ""
+  },
+  "40": {
+    "name": "Kontire_Ne_Akwamu",
+    "meaning": "Kuronti and Akwamu. A symbol of democracy, sharing ideas, taking council."
+  },
+  "41": {
+    "name": "Krado",
+    "meaning": ""
+  },
+  "42": {
+    "name": "Kramo_Bone",
+    "meaning": ""
+  },
+  "43": {
+    "name": "Kuntinkantan",
+    "meaning": ""
+  },
+  "44": {
+    "name": "Kwatakye_Atiko",
+    "meaning": ""
+  },
+  "45": {
+    "name": "Mako",
+    "meaning": "Peppers. A symbol of inequality and uneven development; from the proverb 'All peppers on the same plant don't ripen at the same time.'"
+  },
+  "46": {
+    "name": "Mate_Masie",
+    "meaning": "I have heard and kept it. A symbol of wisdom, knowledge, and prudence. From the saying, 'Nyansa bon mu ne mate masie,' to wit, 'The hole of wisdom is 'I have heard and kept it.'"
+  },
+  "47": {
+    "name": "Mframadan",
+    "meaning": "Well-ventilated house. A symbol of resilience and readiness to face the vicissitudes of life."
+  },
+  "48": {
+    "name": "Mmere_Dane",
+    "meaning": ""
+  },
+  "49": {
+    "name": "Mmomudwan",
+    "meaning": ""
+  },
+  "50": {
+    "name": "Mmusuyidee",
+    "meaning": ""
+  },
+  "51": {
+    "name": "Mpatapo",
+    "meaning": "Pacification knot. A symbol of pacification, forgiveness, and reconciliation."
+  },
+  "52": {
+    "name": "Mpuannum",
+    "meaning": "Five tufts (of hair). A symbol of loyalty and priestly office."
+  },
+  "53": {
+    "name": "Nea_Onnim_No_Sua_A_Ohu",
+    "meaning": ""
+  },
+  "54": {
+    "name": "Nea_Ope_Se_Nkrofoo_Ye_Ma_Wo_No-_Ye_Saa_Ara_Ma_won",
+    "meaning": ""
+  },
+  "55": {
+    "name": "Nea_Ope_Se_Obedi_Hene",
+    "meaning": "He who wants to be a king. A symbol of the qualities of a leader, service, and leadership skills. From the expression, 'Nea ope se obedi hene daakye no firi asee sua som ansa,' to wit, 'He who wants to be a king in the future begins by learning how to serve.'"
+  },
+  "56": {
+    "name": "Nkonsonkonson",
+    "meaning": "Chain. A symbol of unity, community."
+  },
+  "57": {
+    "name": "Nkontim",
+    "meaning": ""
+  },
+  "58": {
+    "name": "Nkuma_Kese",
+    "meaning": ""
+  },
+  "59": {
+    "name": "Nkyimu",
+    "meaning": "The crossed divisions made on Adinkra cloth before the stamping of the symbols is done. A symbol of adroitness, precision, and  quality craftsmanship."
+  },
+  "60": {
+    "name": "Nkyinkyim",
+    "meaning": ""
+  },
+  "61": {
+    "name": "Nnonnowa",
+    "meaning": ""
+  },
+  "62": {
+    "name": "Nsaa",
+    "meaning": "A type of woven cloth, renowned for its quality. A symbol of excellence, genuineness, and authenticity."
+  },
+  "63": {
+    "name": "Nserewa",
+    "meaning": ""
+  },
+  "64": {
+    "name": "Nsoromma",
+    "meaning": "Cowries. A symbol of affluence and wealth. Also a symbol of sacredness when used by priests. Cowries were traditionally used as money in parts of West Africa before the colonial era. In fact, the anglicized form of the Twi word for 'cowry'--'sedee'--is what was adopted as the name for the national currency when the nation weaned itself off of the Ghanaian pound after independence."
+  },
+  "65": {
+    "name": "Nya_Abotere",
+    "meaning": ""
+  },
+  "66": {
+    "name": "Nyame_Akruma",
+    "meaning": ""
+  },
+  "67": {
+    "name": "Nyame_Biribi_Wo_Soro",
+    "meaning": "God, there is something in the heavens. From the saying, 'God, there is something up there (in the heavens); let it come to me.' A symbol of hope and inspiration."
+  },
+  "68": {
+    "name": "Nyame_Dua",
+    "meaning": "God's tree (sacred stump). A symbol of God's presence and protection."
+  },
+  "69": {
+    "name": "Nyame_Nnwu_Na_Mawu",
+    "meaning": "God won't die for me to die; a symbol expressing the immortality of the human soul."
+  },
+  "70": {
+    "name": "Nyame_Nti",
+    "meaning": "By God's grace. More literally, 'Because of God.' A symbol of faith and trust in God. The proverb associated with this symbol is, 'Nyame nti, menwe wura,' to wit, 'Because of God (by God's grace), I won't feed on leaves (like an animal).'"
+  },
+  "71": {
+    "name": "Nyame_Ye_Ohene",
+    "meaning": ""
+  },
+  "72": {
+    "name": "Nyansapo",
+    "meaning": "Wisdom knot. A symbol of wisdom, ingenuity, intelligence, and patience. The proverb associated with this Adinkra is 'Nyansapo wosane no badwenma,' to wit, 'A wisdom knot is untied (only) by the wise.' The Kwame Nkrumah University of Science and Technology (KNUST) uses Nyansapo in their logo and uses the associated proverb as their motto."
+  },
+  "73": {
+    "name": "Odo_Nyera_Fie_Kwan",
+    "meaning": "Love does not lose its way home. Those led by love always end up in the right place."
+  },
+  "74": {
+    "name": "Ohen_Adwae",
+    "meaning": ""
+  },
+  "75": {
+    "name": "Ohene",
+    "meaning": ""
+  },
+  "76": {
+    "name": "Ohene_Aniwa",
+    "meaning": ""
+  },
+  "77": {
+    "name": "Okuafo_Pa",
+    "meaning": "Good farmer. A symbol of diligence, hard work, and entrepreneurship."
+  },
+  "78": {
+    "name": "Onyakopon_Adom_Nti_Biribiara_Beye_Yie_African_Adinkra_Weddin",
+    "meaning": ""
+  },
+  "79": {
+    "name": "Onyakopon_Aniwa",
+    "meaning": ""
+  },
+  "80": {
+    "name": "Osidan",
+    "meaning": ""
+  },
+  "81": {
+    "name": "Osram_Ne_Nsoromma",
+    "meaning": "Moon and star. A symbol of faithfulness, fondness, harmony, benevolence, love, loyalty, and femininity."
+  },
+  "82": {
+    "name": "Owo_Foro_Adobe",
+    "meaning": ""
+  },
+  "83": {
+    "name": "Owuo_Atwedee",
+    "meaning": ""
+  },
+  "84": {
+    "name": "Pa_Gya",
+    "meaning": ""
+  },
+  "85": {
+    "name": "Sankofa",
+    "meaning": ""
+  },
+  "86": {
+    "name": "Sepow",
+    "meaning": "Executioner's knife. A symbol of justice."
+  },
+  "87": {
+    "name": "Sesa_Wosuban",
+    "meaning": "Change your character. A symbol of warning against arrogance, bad manners, and dishonorable behavior."
+  },
+  "88": {
+    "name": "Sunsum",
+    "meaning": "Soul. A symbol of spiritual purity and cleanliness of the soul. The Akans believe that this is the part of God the creator that is transmitted to a person through his father. A person's mother cannot transmit sunsum to him. Instead, she transfers her mogya (blood) to him."
+  },
+  "89": {
+    "name": "Tabon",
+    "meaning": "Paddle or oar. A symbol of strength, confidence, and persistence. These attributes are derived from the qualities required of one who paddles a boat."
+  },
+  "90": {
+    "name": "Tamfo_Bebre",
+    "meaning": "The enemy will suffer; the enemy will stew in his own juice. A symbol for ill-will, jealousy, and envy."
+  },
+  "91": {
+    "name": "Tumi_Te_Se_Kosua",
+    "meaning": ""
+  },
+  "92": {
+    "name": "Tuo_Ne_Akofena",
+    "meaning": ""
+  },
+  "93": {
+    "name": "Wawa_Aba",
+    "meaning": "Seed of the wawa tree. A symbol of hardiness, toughness, and perseverance."
+  },
+  "94": {
+    "name": "Wo_Nsa_Da_Mu_A",
+    "meaning": "When your hands are inside (the dish). A symbol of participatory government, democracy, and pluralism. From the aphorism, 'Wo nsa da mu a, wonni nnya wo,' to wit, 'When your hands are inside the dish, people don't eat everything and leave you nothing.'"
+  },
+  "95": {
+    "name": "Wuforo_Dua_Pa_A",
+    "meaning": "When you climb a good tree. A symbol of support for good causes."
+  }
 }

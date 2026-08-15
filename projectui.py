@@ -220,6 +220,8 @@ if st.button("Predict"):
             # Safely resolve index or string outputs
             if isinstance(prediction, int):
                 symbol_name = CLASS_NAMES.get(prediction, f"Symbol #{prediction}")
+                display_name = symbol_name.replace("_", " ")
+                st.success(f"Prediction: {display_name}")
             else:
                 symbol_name = str(prediction)
 
