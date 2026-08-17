@@ -9,7 +9,7 @@
   },
   "2": {
     "name": "Adikrahene_Dua",
-    "meaning": ""
+    "meaning": "The Pillar of the Adinkrahene. A symbol for, representing the strong foundation, wisdom, and integrity required for true leadership and authority."
   },
   "3": {
     "name": "Adinkrahene",
@@ -17,15 +17,15 @@
   },
   "4": {
     "name": "Adwera",
-    "meaning": ""
+    "meaning": "Watery shrub. A symbol for purity, peace, cleanliness, and spiritual sanctity.  It is often used as a blessing for fresh starts, bringing good fortune and clarity to life."
   },
   "5": {
     "name": "Adwo",
     "meaning": "Calmness. A symbol for peace, tranquility, and quiet."
   },
   "6": {
-    "name": "Agyinduwura",
-    "meaning": ""
+    "name": "Agyindawuru",
+    "meaning": "Agyin's gong. A symbol for  loyalty, obedience, and readiness to act when called upon. It reminds people to stay awake and vigilant in their responsibilities."
   },
   "7": {
     "name": "Akoben",
@@ -52,8 +52,8 @@
     "meaning": "Spider's web. A symbol of wisdom, craftiness, creativity, and the complexities of life. It is the web of Ananse, the crafty spider who is preeminent in African folklore."
   },
   "13": {
-    "name": "Ani_Bere",
-    "meaning": ""
+    "name": "Ani_Bere_A_Enso_Gya",
+    "meaning": "No matter how red-eyed one becomes (i.e. how serious one becomes), his eyes do not spark flames. A symbol of patience, self-containment, self-discipline, and self-control."
   },
   "14": {
     "name": "Asase_Ye_Duru",
@@ -72,8 +72,8 @@
     "meaning": "Let no one bite the other. A symbol of justice, fairplay, freedom, peace, forgiveness, unity, harmony, and the avoidance of conflict or strife."
   },
   "18": {
-    "name": "Biribi_Wo_Soro",
-    "meaning": ""
+    "name": "Nyame_Biribi_Wo_Soro",
+    "meaning": "God, there is something in the heavens. From the saying, 'God, there is something up there (in the heavens); let it come to me.' A symbol of hope and inspiration."
   },
   "19": {
     "name": "Boa_Me_Na_Me_Boa_Wo",
@@ -85,7 +85,7 @@
   },
   "21": {
     "name": "Denkyem",
-    "meaning": ""
+    "meaning": "Crocodile. A symbol of adaptability and cleverness."
   },
   "22": {
     "name": "Dono",
@@ -96,8 +96,8 @@
     "meaning": "Wooden comb. A symbol of feminine consideration or good feminine qualities such as patience, prudence, fondness, love, and care."
   },
   "24": {
-    "name": "Dwannimmen",
-    "meaning": ""
+    "name": "Dwennimmen",
+    "meaning": "Ram's horn. A symbol for strength and humility."
   },
   "25": {
     "name": "Eban",
@@ -145,7 +145,7 @@
   },
   "36": {
     "name": "Kae_Me",
-    "meaning": ""
+    "meaning": "Remember me. A symbol for loyalty, faithfulness, and lasting memory."
   },
   "37": {
     "name": "Kete_Pa",
@@ -153,11 +153,11 @@
   },
   "38": {
     "name": "Kintinkantan",
-    "meaning": ""
+    "meaning": "Puffed up extravagance or puffed up pride. A symbol for excessive pride, arrogance, and showiness."
   },
   "39": {
     "name": "Kojo_Baiden",
-    "meaning": ""
+    "meaning": "Rays. A symbol that represents the cosmos, intuition, and the omnipresence of God."
   },
   "40": {
     "name": "Kontire_Ne_Akwamu",
@@ -165,19 +165,19 @@
   },
   "41": {
     "name": "Krado",
-    "meaning": ""
+    "meaning": "Law and order. A symbol  representing justice, fairness, and the authority of the court."
   },
   "42": {
     "name": "Kramo_Bone",
-    "meaning": ""
+    "meaning": "The bad Muslim. The bad Muslim makes it difficult for a good one to be recognized. A symbol that highlights that some people use a front of deep devotion or friendship to cover up selfish or evil motives."
   },
   "43": {
     "name": "Kuntinkantan",
-    "meaning": ""
+    "meaning": "Bent and spread out. A symbol that represents arrogance, excessive pride, and puffed-up extravagance."
   },
   "44": {
     "name": "Kwatakye_Atiko",
-    "meaning": ""
+    "meaning": "The back of Kwatakye's head. A symbol that represents bravery, valor, and fearlessness."
   },
   "45": {
     "name": "Mako",
@@ -193,15 +193,15 @@
   },
   "48": {
     "name": "Mmere_Dane",
-    "meaning": ""
+    "meaning": "Time chanegs (times change). A symbol of the temporariness of good times."
   },
   "49": {
     "name": "Mmomudwan",
-    "meaning": ""
+    "meaning": "A symbol that represents unity and togetherness."
   },
   "50": {
     "name": "Mmusuyidee",
-    "meaning": ""
+    "meaning": "That which removes bad luck. It serves as an emblem of good fortune, sanctity, and spiritual purity."
   },
   "51": {
     "name": "Mpatapo",
@@ -213,11 +213,11 @@
   },
   "53": {
     "name": "Nea_Onnim_No_Sua_A_Ohu",
-    "meaning": ""
+    "meaning": "He or she who does not know can know from learning. A symbol that represents knowledge, continuous learning, and personal growth."
   },
   "54": {
     "name": "Nea_Ope_Se_Nkrofoo_Ye_Ma_Wo_No-_Ye_Saa_Ara_Ma_won",
-    "meaning": ""
+    "meaning": "A symbol that represents justice, fairness, and the Golden Rule: 'Do unto others as you would have them do unto you.'"
   },
   "55": {
     "name": "Nea_Ope_Se_Obedi_Hene",
@@ -229,11 +229,11 @@
   },
   "57": {
     "name": "Nkontim",
-    "meaning": ""
+    "meaning": "The hair of the queen's servant. A symbol that represents loyalty, readiness to serve, and dedication"
   },
   "58": {
     "name": "Nkuma_Kese",
-    "meaning": ""
+    "meaning": "The great okra. A symbol of supremacy, superiority, and leadershi"
   },
   "59": {
     "name": "Nkyimu",
@@ -241,11 +241,11 @@
   },
   "60": {
     "name": "Nkyinkyim",
-    "meaning": ""
+    "meaning": "Twisting. A symbol representing the tortuous nature of life's journey and, also, the toughness, versatility, and dynamism required to thrive in it. Willis notes that it is also a symbol of dedication to service."
   },
   "61": {
     "name": "Nnonnowa",
-    "meaning": ""
+    "meaning": "The double dono; joined tension talking drum. A symbol of united action, alertness, goodwill, praise, rejoicing, and adroitness."
   },
   "62": {
     "name": "Nsaa",
@@ -253,7 +253,7 @@
   },
   "63": {
     "name": "Nserewa",
-    "meaning": ""
+    "meaning": "Cowries. A symbol of affluence and wealth. Also a symbol of sacredness when used by priests. Cowries were traditionally used as money in parts of West Africa before the colonial era. In fact, the anglicized form of the Twi word for 'cowry'--'sedee'--is what was adopted as the name for the national currency when the nation weaned itself off of the Ghanaian pound after independence."
   },
   "64": {
     "name": "Nsoromma",
@@ -261,11 +261,11 @@
   },
   "65": {
     "name": "Nya_Abotere",
-    "meaning": ""
+    "meaning": "Be patient. A symbol for patience, calmness, emotional endurance, and peaceful tolerance."
   },
   "66": {
-    "name": "Nyame_Akruma",
-    "meaning": ""
+    "name": "Nyame_Akuma",
+    "meaning": "God's axe. A symbol that represents divine strength, righteous might, and protection."
   },
   "67": {
     "name": "Nyame_Biribi_Wo_Soro",
@@ -285,7 +285,7 @@
   },
   "71": {
     "name": "Nyame_Ye_Ohene",
-    "meaning": ""
+    "meaning": "God id king. A symbol the majesty, sovereignty, and supreme authority of God over the universe."
   },
   "72": {
     "name": "Nyansapo",
@@ -297,15 +297,15 @@
   },
   "74": {
     "name": "Ohen_Adwae",
-    "meaning": ""
+    "meaning": "The King's Stool. A symbol representing state authority, wise governance, and the sacred responsibilities of leadership."
   },
   "75": {
     "name": "Ohene",
-    "meaning": ""
+    "meaning": "King or chief. A symbol that represents supreme leadership, majesty, systemic authority, and the moral weight of governance."
   },
   "76": {
     "name": "Ohene_Aniwa",
-    "meaning": ""
+    "meaning": "The king's eyes. A symbol of vigilance, far-sightedness, intelligence, protection, security, defence, authority, and power. From the aphorism, 'Ohene aniwa twa ne ho hyia,' to wit, 'The kings eyes surround him,' that is, 'The king sees everything.'"
   },
   "77": {
     "name": "Okuafo_Pa",
@@ -313,15 +313,15 @@
   },
   "78": {
     "name": "Onyakopon_Adom_Nti_Biribiara_Beye_Yie_African_Adinkra_Weddin",
-    "meaning": ""
+    "meaning": "By God's grace, all will be well. It serves as the ultimate visual expression of hope, divine providence, and unwavering faith"
   },
   "79": {
     "name": "Onyakopon_Aniwa",
-    "meaning": ""
+    "meaning": "God's eye. A symbol representing the omnipresence, omniscience, and all-seeing nature of the Divine."
   },
   "80": {
     "name": "Osidan",
-    "meaning": ""
+    "meaning": "The Builder or God the Builder. A symbol for divine creativity, structural strength, and the foundational power of God. "
   },
   "81": {
     "name": "Osram_Ne_Nsoromma",
@@ -329,19 +329,19 @@
   },
   "82": {
     "name": "Owo_Foro_Adobe",
-    "meaning": ""
+    "meaning": "A snake climbs a raffia palm. A symbol of ingenuity, excellence, feat performance, and performing the unusual or impossible."
   },
   "83": {
     "name": "Owuo_Atwedee",
-    "meaning": ""
+    "meaning": "Ladder of death. A symbol of the certainty and universality of death."
   },
   "84": {
     "name": "Pa_Gya",
-    "meaning": ""
+    "meaning": "To kindle or strike fire. A symbol representing bravery, transformation, resilience, and military ready-preparedness."
   },
   "85": {
     "name": "Sankofa",
-    "meaning": ""
+    "meaning": "Go back and get it! A symbol for the wisdom of learning from the past to build for the future. From the Akan proverb, 'Se wo were firi na wosan kofa a, yenkyiri,' meaning, 'It is not taboo to go back for what you forgot (or left behind).'"
   },
   "86": {
     "name": "Sepow",
@@ -365,11 +365,11 @@
   },
   "91": {
     "name": "Tumi_Te_Se_Kosua",
-    "meaning": ""
+    "meaning": "Power is like an egg. A symbol for fragility of political power, the delicate nature of democracy, and the absolute need for leadership restraint. "
   },
   "92": {
     "name": "Tuo_Ne_Akofena",
-    "meaning": ""
+    "meaning": "The Gun and the Sword of War. A symbol representing maximum protection, defensive strength, and communal security."
   },
   "93": {
     "name": "Wawa_Aba",
