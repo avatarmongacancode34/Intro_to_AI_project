@@ -2,17 +2,17 @@ from pathlib import Path
 import cv2
 
 
-# --------------------------------------------------
+
 # 1. Locate the raw dataset
-# --------------------------------------------------
+
 
 PROJECT_ROOT = Path(__file__).resolve().parent
 RAW_DATA = PROJECT_ROOT / "dataset" / "raw"
 
 
-# --------------------------------------------------
+
 # 2. Find images smaller than 100 x 100 pixels
-# --------------------------------------------------
+
 
 small_images = []
 
@@ -47,9 +47,9 @@ for symbol_folder in RAW_DATA.iterdir():
             })
 
 
-# --------------------------------------------------
+
 # 3. Display the results
-# --------------------------------------------------
+
 
 print("Small Images (< 100 x 100)")
 print("--------------------------")
