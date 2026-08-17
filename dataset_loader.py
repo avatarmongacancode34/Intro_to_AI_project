@@ -3,16 +3,11 @@ from torchvision import datasets, transforms
 from torch.utils.data import DataLoader, Subset
 
 
-# ============================================================
-# 1. PATH
-# ============================================================
+
 
 DATASET_PATH = "dataset/processed"
 
 
-# ============================================================
-# 2. DEVICE
-# ============================================================
 
 device = torch.device(
     "cuda" if torch.cuda.is_available() else "cpu"
@@ -26,18 +21,7 @@ else:
     print("WARNING: CUDA is not available. Using CPU.")
 
 
-# ============================================================
-# 3. TRANSFORMATIONS
-# ============================================================
 
-# ------------------------------------------------------------
-# Training transformations
-# ------------------------------------------------------------
-# Data augmentation is applied ONLY during training.
-#
-# This means the original images are not changed.
-# Random transformations are applied when images are loaded.
-# ------------------------------------------------------------
 
 train_transform = transforms.Compose([
     transforms.Resize((224, 224)),
@@ -62,14 +46,7 @@ train_transform = transforms.Compose([
 ])
 
 
-# ------------------------------------------------------------
-# Validation and testing transformations
-# ------------------------------------------------------------
-# NO random augmentation is applied here.
-#
-# Validation and testing should use consistent,
-# untouched versions of the images.
-# ------------------------------------------------------------
+
 
 eval_transform = transforms.Compose([
     transforms.Resize((224, 224)),
@@ -85,9 +62,7 @@ eval_transform = transforms.Compose([
 ])
 
 
-# ============================================================
-# 4. LOAD BASE DATASET
-# ============================================================
+
 
 base_dataset = datasets.ImageFolder(
     root=DATASET_PATH
@@ -98,9 +73,7 @@ print("Classes:", base_dataset.classes)
 print("Class mapping:", base_dataset.class_to_idx)
 
 
-# ============================================================
-# 5. CREATE TRAIN / VALIDATION / TEST SPLIT
-# ============================================================
+
 
 total_size = len(base_dataset)
 
@@ -114,8 +87,7 @@ val_size = int(0.15 * total_size)
 test_size = total_size - train_size - val_size
 
 
-# Generate reproducible indices
-# Using seed 42 ensures the same split every time.
+
 
 generator = torch.Generator().manual_seed(42)
 
@@ -136,14 +108,7 @@ test_indices = indices[
 ]
 
 
-# ============================================================
-# 6. CREATE DATASETS
-# ============================================================
 
-# ------------------------------------------------------------
-# Training dataset
-# ------------------------------------------------------------
-# Uses train_transform, so augmentation is applied.
 # ------------------------------------------------------------
 
 train_full = datasets.ImageFolder(
@@ -152,11 +117,7 @@ train_full = datasets.ImageFolder(
 )
 
 
-# ------------------------------------------------------------
-# Validation dataset
-# ------------------------------------------------------------
-# Uses eval_transform, so NO random augmentation.
-# ------------------------------------------------------------
+
 
 val_full = datasets.ImageFolder(
     root=DATASET_PATH,
@@ -164,11 +125,7 @@ val_full = datasets.ImageFolder(
 )
 
 
-# ------------------------------------------------------------
-# Testing dataset
-# ------------------------------------------------------------
-# Uses eval_transform, so NO random augmentation.
-# ------------------------------------------------------------
+
 
 test_full = datasets.ImageFolder(
     root=DATASET_PATH,
@@ -194,9 +151,6 @@ test_dataset = Subset(
 )
 
 
-# ============================================================
-# 7. DATASET SPLIT INFORMATION
-# ============================================================
 
 print("\nDataset Split")
 print("----------------")
@@ -206,9 +160,7 @@ print("Validation images:", len(val_dataset))
 print("Testing images   :", len(test_dataset))
 
 
-# ============================================================
-# 8. CREATE DATALOADERS
-# ============================================================
+
 
 train_loader = DataLoader(
     train_dataset,
@@ -229,9 +181,7 @@ test_loader = DataLoader(
 )
 
 
-# ============================================================
-# 9. TEST TRAINING BATCH
-# ============================================================
+
 
 images, labels = next(iter(train_loader))
 
@@ -242,9 +192,7 @@ print("Batch shape:", images.shape)
 print("Labels:", labels)
 
 
-# ============================================================
-# 10. MOVE BATCH TO DEVICE
-# ============================================================
+
 
 images = images.to(device)
 labels = labels.to(device)
@@ -256,9 +204,7 @@ print("Images device:", images.device)
 print("Labels device:", labels.device)
 
 
-# ============================================================
-# 11. NUMBER OF BATCHES
-# ============================================================
+
 
 print("\nNumber of Batches")
 print("---------------------")
@@ -268,9 +214,7 @@ print("Validation batches:", len(val_loader))
 print("Testing batches   :", len(test_loader))
 
 
-# ============================================================
-# 12. FINAL PIPELINE VALIDATION
-# ============================================================
+
 
 print("\nPipeline Validation")
 print("---------------------")
