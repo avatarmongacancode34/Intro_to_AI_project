@@ -7,9 +7,7 @@ import time
 from data_pipeline.dataset_loader import get_dataloaders
 from adinkra_cnn import AdinkraCNN
 
-# ============================================================
-# CONFIGURATION
-# ============================================================
+
 DATASET_PATH = "dataset/raw"
 BATCH_SIZE = 32
 NUM_EPOCHS = 120
