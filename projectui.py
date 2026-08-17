@@ -217,11 +217,8 @@ if st.button("Predict"):
             with st.spinner("Analyzing your Adinkra symbol..."):
                 prediction = predict_image(load_model_cached(), temp_file_path)
 
-            # Safely resolve index or string outputs
             if isinstance(prediction, int):
                 symbol_name = CLASS_NAMES.get(prediction, f"Symbol #{prediction}")
-                display_name = symbol_name.replace("_", " ")
-                st.success(f"Prediction: {display_name}")
             else:
                 symbol_name = str(prediction)
 
