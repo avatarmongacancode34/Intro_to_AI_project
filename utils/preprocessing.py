@@ -3,9 +3,9 @@ import cv2
 import numpy as np
 import shutil
 
-# ==========================================
+
 # 1. PROJECT PATHS
-# ==========================================
+
 
 PROJECT_ROOT = Path(__file__).resolve().parent
 
@@ -13,19 +13,19 @@ RAW_DATA = PROJECT_ROOT / "dataset" / "raw"
 PROCESSED_DATA = PROJECT_ROOT / "dataset" / "processed"
 
 
-# ==========================================
+
 # 2. SETTINGS
-# ==========================================
+
 
 IMAGE_SIZE = 224
 
 SUPPORTED_FORMATS = [".jpg", ".jpeg", ".png"]
 
 
-# ==========================================
+
 # 3. RESIZE IMAGE WHILE PRESERVING
 #    ASPECT RATIO
-# ==========================================
+
 
 def resize_with_padding(image, size=224):
 
@@ -63,9 +63,9 @@ def resize_with_padding(image, size=224):
     return canvas
 
 
-# ==========================================
+
 # 4. PROCESS DATASET
-# ==========================================
+
 
 def process_dataset():
 
@@ -196,9 +196,9 @@ def process_dataset():
             f"{class_processed} images"
         )
 
-    # ==========================================
+    
     # 5. FINAL SUMMARY
-    # ==========================================
+    
 
     print("\n==========================================")
     print("PREPROCESSING COMPLETE")
@@ -223,9 +223,9 @@ def process_dataset():
     print("==========================================")
 
 
-# ==========================================
+
 # 6. RUN PROGRAM
-# ==========================================
+
 
 if __name__ == "__main__":
     process_dataset()

@@ -3,18 +3,18 @@ from pathlib import Path
 from PIL import Image
 
 
-# ==========================================
+
 # SETTINGS
-# ==========================================
+
 
 DATASET_PATH = "dataset/raw"
 
 LOW_COUNT_WARNING = 20
 VERY_LOW_COUNT_WARNING = 10
 
-# ==========================================
+
 # STORAGE
-# ==========================================
+
 
 class_counts = {}
 image_formats = {}
@@ -28,9 +28,9 @@ filename_stems = {}
 
 total_images = 0
 
-# ==========================================
+
 # INSPECT DATASET
-# ==========================================
+
 
 dataset_path = Path(DATASET_PATH)
 
@@ -45,14 +45,14 @@ classes = sorted([
 ])
 
 print("\nAdinkra Dataset Inspection")
-print("==========================")
+
 
 print(f"Dataset path: {DATASET_PATH}")
 print(f"Number of classes: {len(classes)}")
 
-# ==========================================
+
 # LOOP THROUGH CLASSES
-# ==========================================
+
 
 for class_name in classes:
 
@@ -72,17 +72,17 @@ for class_name in classes:
         total_images += 1
         class_count += 1
 
-        # ----------------------------------
+        
         # FORMAT
-        # ----------------------------------
+        
 
         extension = file_path.suffix.lower()
 
         image_formats[extension] = image_formats.get(extension, 0) + 1
 
-        # ----------------------------------
+        
         # FILENAME STEM
-        # ----------------------------------
+        
 
         stem = file_path.stem.lower()
 
@@ -91,9 +91,9 @@ for class_name in classes:
 
         filename_stems[stem].append(str(file_path))
 
-        # ----------------------------------
+        
         # OPEN IMAGE
-        # ----------------------------------
+        
 
         try:
 
@@ -107,9 +107,9 @@ for class_name in classes:
                     image_dimensions.get(dimension, 0) + 1
                 )
 
-                # ----------------------------------
+                
                 # VERY SMALL IMAGE CHECK
-                # ----------------------------------
+                
 
                 if width < 100 or height < 100:
 
@@ -129,12 +129,12 @@ for class_name in classes:
     class_counts[class_name] = class_count
 
 
-# ==========================================
+
 # CLASS INFORMATION
-# ==========================================
+
 
 print("\nImages per Class")
-print("----------------")
+print()
 
 for class_name, count in class_counts.items():
 
@@ -149,30 +149,30 @@ for class_name, count in class_counts.items():
     print(f"{class_name}: {count}{warning}")
 
 
-# ==========================================
+
 # TOTAL IMAGES
-# ==========================================
+
 
 print("\nTotal Images")
-print("------------")
+print()
 print(total_images)
 
 
-# ==========================================
+
 # IMAGE FORMATS
-# ==========================================
+
 
 print("\nImage Formats")
-print("-------------")
+print()
 
 for extension, count in sorted(image_formats.items()):
 
     print(f"{extension}: {count}")
 
 
-# ==========================================
+
 # IMAGE DIMENSIONS
-# ==========================================
+
 
 print("\nImage Dimensions")
 print("----------------")
@@ -192,9 +192,9 @@ for dimension, count in sorted_dimensions[:20]:
     print(f"{dimension}: {count}")
 
 
-# ==========================================
+
 # SMALL IMAGE INSPECTION
-# ==========================================
+
 
 print("\nSmall Image Inspection")
 print("----------------------")
@@ -242,12 +242,12 @@ print("Small images (50–99 pixels):   ", len(small))
 print("Acceptable images (100+ pixels):", len(acceptable))
 
 
-# ==========================================
+
 # SHOW VERY SMALL IMAGES
-# ==========================================
+
 
 print("\nVERY SMALL IMAGES (<50 pixels)")
-print("-------------------------------")
+
 
 for class_name, filename, width, height, filepath in very_small:
     print(
@@ -258,12 +258,12 @@ for class_name, filename, width, height, filepath in very_small:
     )
 
 
-# ==========================================
+
 # SHOW SMALL IMAGES
-# ==========================================
+
 
 print("\nSMALL IMAGES (50–99 pixels)")
-print("---------------------------")
+
 
 for class_name, filename, width, height, filepath in small:
     print(
@@ -272,12 +272,12 @@ for class_name, filename, width, height, filepath in small:
         f"{width}x{height} | "
         f"{filepath}"
     )
-# ==========================================
+
 # UNREADABLE IMAGES
-# ==========================================
+
 
 print("\nCorrupted / Unreadable Images")
-print("-----------------------------")
+
 
 print(
     f"Number of unreadable images: "
@@ -292,12 +292,12 @@ if unreadable_images:
         print("Error:", image["error"])
 
 
-# ==========================================
+
 # DUPLICATE FILENAME STEMS
-# ==========================================
+
 
 print("\nFilename Collisions")
-print("-------------------")
+
 
 collisions = {
     stem: files
@@ -323,12 +323,12 @@ if collisions:
             print(f"  {file}")
 
 
-# ==========================================
+
 # CLASS IMBALANCE
-# ==========================================
+
 
 print("\nClass Imbalance Summary")
-print("-----------------------")
+
 
 counts = list(class_counts.values())
 
@@ -367,12 +367,12 @@ if counts:
     )
 
 
-# ==========================================
+
 # CLASSES NEEDING ATTENTION
-# ==========================================
+
 
 print("\nClasses Needing Attention")
-print("-------------------------")
+
 
 very_low_classes = [
     (name, count)
@@ -407,13 +407,13 @@ if not very_low_classes and not low_classes:
     print("No classes below 20 images.")
 
 
-# ==========================================
-# FINAL SUMMARY
-# ==========================================
 
-print("\n================================")
+# FINAL SUMMARY
+
+
+
 print("FINAL DATASET SUMMARY")
-print("================================")
+
 
 print(f"Classes              : {len(classes)}")
 print(f"Total images         : {total_images}")
